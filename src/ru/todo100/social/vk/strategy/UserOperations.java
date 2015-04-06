@@ -28,6 +28,10 @@ public class UserOperations extends Operations {
             if (!StringUtils.isEmpty(user_ids)) {
                 urlString.append("user_ids=").append(user_ids);
             }
+
+                urlString.append("&fields=").append("photo_200_orig");
+
+
             JSONObject object = new JSONObject(getResponse(urlString.toString()));
             JSONArray response = object.getJSONArray("response");
             List<UserData> users = new ArrayList<>();
@@ -36,6 +40,7 @@ public class UserOperations extends Operations {
                 user.setId(response.getJSONObject(i).getInt("id"));
                 user.setFirstName(response.getJSONObject(i).getString("first_name"));
                 user.setLastName(response.getJSONObject(i).getString("last_name"));
+                user.setPhoto200_Orig(response.getJSONObject(i).getString("photo_200_orig"));
                 users.add(user);
             }
             return users;

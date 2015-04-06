@@ -7,30 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abf1a9c5-0006-4013-acfe-a417f2000778" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/ru/todo100/social/LogsService.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/services/LogsService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jar" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/datas/GroupData.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/datas/GroupData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/GroupsOperations.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/GroupsOperations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/Install.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/Install.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jnlp" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jnlp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/LandingController.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/LandingController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/datas/LogData.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/datas/LogData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/LogsController.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/LogsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/UserGroupsController.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/UserGroupsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/VideoOperations.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/VideoOperations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/WallOperations.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/WallOperations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/META-INF/resources/beans.xml" afterPath="$PROJECT_DIR$/META-INF/resources/beans.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vkontakte/beans.xml" afterPath="$PROJECT_DIR$/out/production/Vkontakte/beans.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/igor.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/igor.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vkontakte/ru/todo100/social/vk/controllers/landing.fxml" afterPath="$PROJECT_DIR$/out/production/Vkontakte/ru/todo100/social/vk/controllers/landing.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/landing.fxml" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/landing.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Vkontakte/ru/todo100/social/vk/controllers/logs.fxml" afterPath="$PROJECT_DIR$/out/production/Vkontakte/ru/todo100/social/vk/controllers/logs.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/logs.fxml" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/logs.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.log" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/vk.properties" afterPath="$PROJECT_DIR$/db/vk.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.properties" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/vk.script" afterPath="$PROJECT_DIR$/db/vk.script" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.script" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.script" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/datas/UserData.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/datas/UserData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/UserOperations.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/UserOperations.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Vkontakte.iws" />
@@ -111,46 +92,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LogsService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/services/LogsService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="508" max-vertical-offset="1170">
-              <caret line="58" column="26" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="26" />
-              <folding>
-                <element signature="e#2106#2107#0" expanded="true" />
-                <element signature="e#2141#2142#0" expanded="true" />
-                <marker date="1428308149180" expanded="true" signature="723:790" placeholder="SELECT * fro..logs..." />
-                <marker date="1428308149180" expanded="true" signature="1448:1554" placeholder="INSERT INTO ..." />
-                <marker date="1428308149180" expanded="true" signature="2298:2344" placeholder="SELECT * FRO..logs..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Install.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/Install.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1230">
-              <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1428305975408" expanded="true" signature="387:426" placeholder="SELECT * FRO..TABLES..." />
-                <marker date="1428305975408" expanded="true" signature="755:813" placeholder="CREATE TABLE..params..." />
-                <marker date="1428305975408" expanded="true" signature="1206:1245" placeholder="SELECT * FRO..TABLES..." />
-                <marker date="1428305975408" expanded="true" signature="1566:1976" placeholder="CREATE TABLE..logs..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="LandingController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/LandingController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.7168142" vertical-offset="704" max-vertical-offset="3090">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.59707725" vertical-offset="1004" max-vertical-offset="3015">
+              <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
               <folding>
-                <element signature="e#6047#6048#0" expanded="true" />
-                <element signature="e#6076#6077#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#6013#6014#0" expanded="true" />
+                <element signature="e#6042#6043#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -162,6 +112,31 @@
             <state vertical-scroll-proportion="0.0" vertical-offset="1425" max-vertical-offset="1965">
               <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserOperations.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/UserOperations.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="690">
+              <caret line="42" column="89" selection-start-line="42" selection-start-column="89" selection-end-line="42" selection-end-column="89" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/datas/UserData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="600">
+              <caret line="14" column="32" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="32" />
+              <folding>
+                <element signature="e#222#223#0" expanded="true" />
+                <element signature="e#258#259#0" expanded="true" />
+                <element signature="e#316#317#0" expanded="true" />
+                <element signature="e#366#367#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -251,6 +226,8 @@
         <option value="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/logs.fxml" />
         <option value="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/LogsController.java" />
         <option value="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/landing.fxml" />
+        <option value="$PROJECT_DIR$/src/ru/todo100/social/vk/datas/UserData.java" />
+        <option value="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/UserOperations.java" />
         <option value="$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/LandingController.java" />
       </list>
     </option>
@@ -905,7 +882,7 @@
       <workItem from="1427902623545" duration="1624000" />
       <workItem from="1428142524843" duration="594000" />
       <workItem from="1428147403545" duration="11000" />
-      <workItem from="1428147477792" duration="28814000" />
+      <workItem from="1428147477792" duration="29363000" />
     </task>
     <task id="LOCAL-00001" summary="VK-2">
       <created>1427029674624</created>
@@ -1135,11 +1112,17 @@
       <option name="project" value="LOCAL" />
       <updated>1428294763904</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Log form changed">
+      <created>1428309055814</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1428309055814</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117264000" />
+    <option name="totallyTimeSpent" value="117813000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1167,7 +1150,7 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.76942676" sideWeight="0.49966866" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30318472" sideWeight="0.49966866" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299363" sideWeight="0.49966866" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1177,7 +1160,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299363" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44585988" sideWeight="0.60371107" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.76942676" sideWeight="0.50033134" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30318472" sideWeight="0.50033134" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1256,7 +1239,8 @@
     <MESSAGE value="Add settings antiCaptcha, add new beans." />
     <MESSAGE value="Settings refactoring and moved AbstractController and Interface Controller" />
     <MESSAGE value="Delete unused components" />
-    <option name="LAST_COMMIT_MESSAGE" value="Delete unused components" />
+    <MESSAGE value="Log form changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Log form changed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1279,13 +1263,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/jdk1.8.0_40/javafx-src.zip!/com/sun/javafx/logging/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20750988" vertical-offset="0" max-vertical-offset="0">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/jdk1.8.0_40/src.zip!/java/util/logging/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="5.978261" vertical-offset="0" max-vertical-offset="0">
@@ -1395,14 +1372,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/UserOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="30" column="50" selection-start-line="30" selection-start-column="50" selection-end-line="30" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1631,10 +1600,10 @@
           <caret line="64" column="42" selection-start-line="64" selection-start-column="42" selection-end-line="64" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1428305975408" expanded="true" signature="387:426" placeholder="SELECT * FRO..TABLES..." />
-            <marker date="1428305975408" expanded="true" signature="755:813" placeholder="CREATE TABLE..params..." />
-            <marker date="1428305975408" expanded="true" signature="1206:1245" placeholder="SELECT * FRO..TABLES..." />
-            <marker date="1428305975408" expanded="true" signature="1566:1976" placeholder="CREATE TABLE..logs..." />
+            <marker date="1428305975408" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..TABLES..." />
+            <marker date="1428305975408" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..params..." />
+            <marker date="1428305975408" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..TABLES..." />
+            <marker date="1428305975408" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..logs..." />
           </folding>
         </state>
       </provider>
@@ -1646,9 +1615,9 @@
           <folding>
             <element signature="e#2106#2107#0" expanded="true" />
             <element signature="e#2141#2142#0" expanded="true" />
-            <marker date="1428308149180" expanded="true" signature="723:790" placeholder="SELECT * fro..logs..." />
-            <marker date="1428308149180" expanded="true" signature="1448:1554" placeholder="INSERT INTO ..." />
-            <marker date="1428308149180" expanded="true" signature="2298:2344" placeholder="SELECT * FRO..logs..." />
+            <marker date="1428308149180" expanded="true" signature="-1:-1" placeholder="SELECT * fro..logs..." />
+            <marker date="1428308149180" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1428308149180" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..logs..." />
           </folding>
         </state>
       </provider>
@@ -1717,13 +1686,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/datas/UserData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="600">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="32" />
+          <folding>
+            <element signature="e#222#223#0" expanded="true" />
+            <element signature="e#258#259#0" expanded="true" />
+            <element signature="e#316#317#0" expanded="true" />
+            <element signature="e#366#367#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/UserOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="690">
+          <caret line="42" column="89" selection-start-line="42" selection-start-column="89" selection-end-line="42" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/controllers/LandingController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7168142" vertical-offset="704" max-vertical-offset="3090">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.59707725" vertical-offset="1004" max-vertical-offset="3015">
+          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
           <folding>
-            <element signature="e#6047#6048#0" expanded="true" />
-            <element signature="e#6076#6077#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#6013#6014#0" expanded="true" />
+            <element signature="e#6042#6043#0" expanded="true" />
           </folding>
         </state>
       </provider>

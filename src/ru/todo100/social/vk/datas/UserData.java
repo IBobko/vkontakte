@@ -8,6 +8,16 @@ public class UserData {
     private String firstName;
     private String lastName;
 
+    public String getPhoto200_Orig() {
+        return photo200_Orig;
+    }
+
+    public void setPhoto200_Orig(String photo200_Orig) {
+        this.photo200_Orig = photo200_Orig;
+    }
+
+    private String photo200_Orig;
+
     public String getFirstName() {
         return firstName;
     }

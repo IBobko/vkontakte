@@ -63,8 +63,6 @@ public class LandingController extends AbstractController implements Initializab
     }
 
     protected void init() {
-
-
         groupsMenu.setDisable(true);
         webView.getEngine().load("https://oauth.vk.com/authorize?client_id=" + this.clientId + "&scope=friends,messages,wall,groups,video&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.27N&response_type=token");
         webView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
@@ -83,13 +81,10 @@ public class LandingController extends AbstractController implements Initializab
 
                         userAvatar.setVisible(true);
                         try {
-                            URL url = new URL("http://cs623727.vk.me/v623727991/2414b/L4EcNPHuoXY.jpg");
+                            URL url = new URL(userData.getPhoto200_Orig());
                             URLConnection connection = url.openConnection();
                             InputStream in = connection.getInputStream();
-
                             Image image = new Image(in);
-
-
                             userAvatar.setImage(image);
                             userAvatar.setFitHeight(image.getHeight());
                             userAvatar.setFitWidth(image.getWidth());
