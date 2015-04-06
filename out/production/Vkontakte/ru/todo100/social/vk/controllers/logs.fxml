@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<GridPane hgap="10" prefHeight="500.0" prefWidth="500.0" vgap="10" xmlns="http://javafx.com/javafx/8"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.todo100.social.vk.controllers.LogsController">
+    <children>
+        <TableView fx:id="logTableView">
+            <columns>
+                <TableColumn fx:id="groupId" text="ID группы"/>
+                <TableColumn fx:id="groupMessage" text="Сообщение"/>
+                <TableColumn fx:id="groupAttachment" text="Вложение"/>
+            </columns>
+        </TableView>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
+</GridPane>

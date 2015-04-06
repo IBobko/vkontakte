@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="scenebuilder.jnlp">
+  <information>
+    <title>Sample JavaFX Application</title>
+    <vendor>Unknown vendor</vendor>
+    <description>Sample JavaFX 2.0 application.</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="8.0+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="bundles/scenebuilderexe/app/scenebuilder.jar" size="2686440" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/charsets.jar" size="3086224" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/access-bridge-64.jar" size="187471" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/cldrdata.jar" size="3860522" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/dnsns.jar" size="8286" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/jaccess.jar" size="44115" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/jfxrt.jar" size="17070998" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/localedata.jar" size="2248141" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/nashorn.jar" size="1618832" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/sunec.jar" size="39773" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/sunjce_provider.jar" size="278033" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/sunmscapi.jar" size="32654" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/sunpkcs11.jar" size="249280" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/ext/zipfs.jar" size="68836" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/javaws.jar" size="921271" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/jce.jar" size="113593" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/jfr.jar" size="559333" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/jfxswt.jar" size="32982" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/jsse.jar" size="619924" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/management-agent.jar" size="381" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/plugin.jar" size="1920629" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/resources.jar" size="3487757" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/rt.jar" size="62817986" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/security/US_export_policy.jar" size="3026" download="eager" />
+    <jar href="bundles/scenebuilderexe/runtime/jre/lib/security/local_policy.jar" size="3527" download="eager" />
+    <jar href="scenebuilder.jar" size="24476137" download="eager" />
+  </resources>
+  <applet-desc  width="600" height="400" main-class="com.javafx.main.NoJavaFXFallback"  name="scenebuilderexe" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="600" height="400" main-class="com.oracle.javafx.scenebuilder.app.SceneBuilderApp"  name="scenebuilderexe" />
+  <update check="background"/>
+</jnlp>

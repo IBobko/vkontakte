@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="vk" uuid="628b4d5e-5da3-4033-8921-095107589797">
+      <secret-storage>master_key</secret-storage>
+      <schema-pattern>PUBLIC.PUBLIC</schema-pattern>
+      <default-schemas>PUBLIC.PUBLIC</default-schemas>
+    </data-source>
+  </component>
+</project>

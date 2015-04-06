@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="landingController" class="ru.todo100.social.vk.controllers.LandingController"/>
+
+    <bean id="userGroupsController" class="ru.todo100.social.vk.controllers.UserGroupsController">
+        <property name="logsService" ref="logsService"/>
+    </bean>
+
+
+    <bean id="database" class="ru.todo100.social.Database"/>
+    <bean id="logsService" class="ru.todo100.social.LogsService">
+        <property name="database" ref="database"/>
+    </bean>
+
+    <bean id="logsController" class="ru.todo100.social.vk.controllers.LogsController">
+        <property name="logsService" ref="logsService"/>
+    </bean>
+
+    <bean init-method="run" id="install" class="ru.todo100.social.Install">
+        <property name="database" ref="database"/>
+
+    </bean>
+</beans>
+

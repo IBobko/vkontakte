@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<!--suppress JavaFxUnresolvedFxIdReference -->
+
+<HBox prefHeight="600.0" prefWidth="900.0" spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.todo100.social.vk.controllers.SettingsController">
+   <children>
+      <Label text="Ключ антикапчи" />
+      <TextField />
+      <Button mnemonicParsing="false" text="Сохраннить" />
+   </children>
+</HBox>

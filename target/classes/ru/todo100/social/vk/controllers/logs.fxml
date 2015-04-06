@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<?import java.lang.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<GridPane hgap="10" prefHeight="500.0" prefWidth="500.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.todo100.social.vk.controllers.LogsController">
+   <children>
+      <TableView prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</GridPane>

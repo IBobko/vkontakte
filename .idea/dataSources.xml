@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="4198215958">
+    <data-source source="LOCAL" name="vk" uuid="628b4d5e-5da3-4033-8921-095107589797">
+      <driver-ref>hsqldb.embedded</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
+      <jdbc-url>jdbc:hsqldb:file:$PROJECT_DIR$/db/vk</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>

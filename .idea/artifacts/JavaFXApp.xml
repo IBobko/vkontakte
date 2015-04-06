@@ -1,0 +1,30 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" build-on-make="true" name="JavaFXApp">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaFXApp</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="ru.todo100.social.vk.Main" />
+        <option name="description" value="" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="Social" />
+        <option name="vendor" value="Todo100" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="JavaFXApp.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+          <element id="dir-copy" path="$PROJECT_DIR$/META-INF" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="dir-copy" path="$PROJECT_DIR$/lib" />
+        </element>
+        <element id="module-output" name="Vkontakte" />
+      </element>
+      <element id="directory" name="db">
+        <element id="dir-copy" path="$PROJECT_DIR$/db" />
+      </element>
+    </root>
+  </artifact>
+</component>
