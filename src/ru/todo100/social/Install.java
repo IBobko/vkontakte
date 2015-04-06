@@ -56,9 +56,13 @@ public class Install {
             if (!logs_table) {
                 statement.execute("CREATE TABLE logs (" +
                         "id INTEGER ," +
-                        "group_id integer," +
+                        "post_id INTEGER ," +
+                        "group_id INTEGER," +
+                        "group_name VARCHAR(255)," +
+                        "group_type VARCHAR (10)," +
                         "message VARCHAR (500)," +
-                        "atachment VARCHAR (500))");
+                        "attachment VARCHAR (500)," +
+                        "created TIMESTAMP)");
             }
 
         } catch (SQLException e) {

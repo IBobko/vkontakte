@@ -1,24 +1,9 @@
 package ru.todo100.social.vk.strategy;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Worker;
-import javafx.fxml.FXML;
-import javafx.geometry.BoundingBox;
-import javafx.geometry.Bounds;
-import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.web.WebView;
-import javafx.util.Callback;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.html.HTMLInputElement;
-import ru.todo100.social.vk.Engine;
 import ru.todo100.social.vk.datas.PostData;
-import ru.todo100.social.vk.datas.UserData;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -103,7 +88,7 @@ public class WallOperations extends Operations {
         return null;
     }
 
-    public Boolean post(Long owner_id, Integer friends_only, Integer from_group, String message, String attachments) {
+    public Integer post(Integer owner_id, Integer friends_only, Integer from_group, String message, String attachments) {
         try {
             StringBuilder urlString = getStringBuilder("wall.post");
             if (owner_id != null) {
@@ -125,81 +110,10 @@ public class WallOperations extends Operations {
             }
             String responseBody = getResponse(urlString.toString());
             JSONObject object = new JSONObject(responseBody);
-//            if (object.has("error")) {
-//                validate(object);
-//            }
-            return !object.has("error");
+            return object.getJSONObject("response").getInt("post_id");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
-
-//    void validate(JSONObject jo) {
-////        Bounds parentBounds = new BoundingBox(0,0,0,0) {
-////        }
-//
-//        VBox root = new VBox();
-//
-//
-//        final WebView webView = new WebView();
-//        root.getChildren().addAll(webView);
-//        Scene scene = new Scene(root, 300, 250);
-//
-//        webView.getEngine().setConfirmHandler(new Callback<String, Boolean>() {
-//            @Override public Boolean call(String msg) {
-//                return true;
-//            }
-//        });
-//        webView.getEngine().load("http://www.w3schools.com/js/tryit.asp?filename=tryjs_confirm");
-//
-//
-//
-//        String captchaUrl;
-//        try {
-//            captchaUrl = jo.getJSONObject("error").getString("redirect_uri");
-//
-//            System.out.println(jo.getJSONObject("error").getString("redirect_uri"));
-//        } catch (JSONException e) {
-//
-//            e.printStackTrace();
-//            return;
-//        }
-//
-//        webView.getEngine().load(captchaUrl);
-//        webView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
-//            @Override
-//            public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
-////                if (newValue == Worker.State.SUCCEEDED) {
-////                    System.out.println(webView.getEngine().getDocument().toString());
-//////                    if (webView.getEngine().getLocation().contains("#")) {
-//////                        webView.setVisible(false);
-//////                        String[] splitLocation = webView.getEngine().getLocation().split("#access_token=");
-//////                        String[] temp = splitLocation[1].split("&");
-//////                        Engine.accessToken = temp[0];
-//////                        UserOperations user = new UserOperations(Engine.accessToken);
-//////                        UserData userData = user.get();
-//////                        yourNameLabel.setText(yourNameText.replace("#YOUR_VK_NAME", userData.getFirstName() + " " + userData.getLastName()));
-//////                    }
-//////
-//////                    NodeList nodes = webView.getEngine().getDocument().getElementsByTagName("input");
-//////                    for (int i = 0; i < nodes.getLength(); i++) {
-//////                        Node element = nodes.item(i).getAttributes().getNamedItem("name");
-//////                        if (element.getNodeValue().equals("email")) {
-//////                            nodes.item(i).getAttributes().getNamedItem("value").setNodeValue(login);
-//////                        }
-//////                        if (element.getNodeValue().equals("pass")) {
-//////                            HTMLInputElement passwordElement = (HTMLInputElement) nodes.item(i);
-//////                            passwordElement.setValue(password);
-//////                        }
-//////                        if (element.getNodeValue().equals("submit")) {
-//////                            HTMLInputElement submitElement = (HTMLInputElement) nodes.item(i);
-//////                            submitElement.click();
-//////                        }
-//////                    }
-////                }
-//            }
-//        });
-//
-//    }
 }

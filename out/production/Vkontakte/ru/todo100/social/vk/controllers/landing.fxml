@@ -1,59 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
-<GridPane fx:id="gridPane" alignment="TOP_LEFT" hgap="10" prefHeight="626.0" prefWidth="631.0" vgap="10"
-          xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="ru.todo100.social.vk.controllers.LandingController">
+
+<GridPane fx:id="gridPane" alignment="TOP_LEFT" hgap="10" prefHeight="626.0" prefWidth="631.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.todo100.social.vk.controllers.LandingController">
     <columnConstraints>
-        <ColumnConstraints/>
+        <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints/>
-        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" valignment="CENTER"
-                        vgrow="ALWAYS"/>
-        <RowConstraints/>
+        <RowConstraints />
+        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="44.0" valignment="CENTER" vgrow="ALWAYS" />
+        <RowConstraints valignment="TOP" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
         <HBox spacing="10" GridPane.rowIndex="1">
             <children>
                 <Label fx:id="yourNameLabel" onMouseClicked="#onContactClicked" text="Вход не выполнен">
                     <font>
-                        <Font size="16.0"/>
+                        <Font size="16.0" />
                     </font>
                     <padding>
-                        <Insets left="10.0"/>
+                        <Insets left="10.0" />
                     </padding>
                 </Label>
-                <Button mnemonicParsing="false" onAction="#exitAction" text="Выйти"/>
+                <Button mnemonicParsing="false" onAction="#exitAction" text="Выйти" />
             </children>
         </HBox>
         <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.rowIndex="0">
             <menus>
                 <Menu mnemonicParsing="false" text="Контакт">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#closeWindowAction" text="Close"/>
+                        <MenuItem mnemonicParsing="false" onAction="#closeWindowAction" text="Close" />
                     </items>
                 </Menu>
                 <Menu fx:id="groupsMenu" mnemonicParsing="false" text="Группы">
                     <items>
-                        <MenuItem fx:id="showUserGroups" mnemonicParsing="false" onAction="#showUserGroups"
-                                  text="Посмотреть группы пользователя"/>
-                        <MenuItem fx:id="searchGroups" mnemonicParsing="false" onAction="#searchGroups"
-                                  text="Поиск групп"/>
+                        <MenuItem fx:id="showUserGroups" mnemonicParsing="false" onAction="#showUserGroups" text="Посмотреть группы пользователя" />
+                        <MenuItem fx:id="searchGroups" mnemonicParsing="false" onAction="#searchGroups" text="Поиск групп" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Настройки">
                     <items>
-                        <MenuItem onAction="#onActionSettings" text="Настройки"/>
-                        <MenuItem onAction="#onActionLogs" text="Логи"/>
+                        <MenuItem onAction="#onActionSettings" text="Настройки" />
+                        <MenuItem onAction="#onActionLogs" text="Логи" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
-        <WebView fx:id="webView" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <WebView fx:id="webView" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+      <ImageView fx:id="userAvatar" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></ImageView>
     </children>
 </GridPane>

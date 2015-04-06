@@ -15,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
@@ -29,7 +31,9 @@ import ru.todo100.social.vk.datas.UserData;
 import ru.todo100.social.vk.strategy.UserOperations;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ResourceBundle;
 
 @SuppressWarnings({"FieldCanBeLocal", "UnusedParameters", "SpellCheckingInspection"})
@@ -40,6 +44,7 @@ public class LandingController extends AbstractController implements Initializab
     private final String password = "kjfry4hu575gt5hy";
     public GridPane gridPane;
     public Menu groupsMenu;
+    public ImageView userAvatar;
 
     @FXML
     private Label yourNameLabel;
@@ -75,6 +80,24 @@ public class LandingController extends AbstractController implements Initializab
                         UserData userData = user.get();
                         groupsMenu.setDisable(false);
                         yourNameLabel.setText(yourNameText.replace("#YOUR_VK_NAME", userData.getFirstName() + " " + userData.getLastName()));
+
+                        userAvatar.setVisible(true);
+                        try {
+                            URL url = new URL("http://cs623727.vk.me/v623727991/2414b/L4EcNPHuoXY.jpg");
+                            URLConnection connection = url.openConnection();
+                            InputStream in = connection.getInputStream();
+
+                            Image image = new Image(in);
+
+
+                            userAvatar.setImage(image);
+                            userAvatar.setFitHeight(image.getHeight());
+                            userAvatar.setFitWidth(image.getWidth());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
 
                     NodeList nodes = webView.getEngine().getDocument().getElementsByTagName("input");
@@ -85,11 +108,11 @@ public class LandingController extends AbstractController implements Initializab
                         }
                         if (element.getNodeValue().equals("pass")) {
                             HTMLInputElement passwordElement = (HTMLInputElement) nodes.item(i);
-                            //passwordElement.setValue(password);
+                            passwordElement.setValue(password);
                         }
                         if (element.getNodeValue().equals("submit")) {
                             HTMLInputElement submitElement = (HTMLInputElement) nodes.item(i);
-                            //submitElement.click();
+                            submitElement.click();
                         }
                     }
                 }
@@ -98,7 +121,7 @@ public class LandingController extends AbstractController implements Initializab
     }
 
     public void showUserGroups(ActionEvent actionEvent) {
-        Controller controller = (Controller) SpringFXMLLoader.load("ru/todo100/social/vk/controllers/userGroups.fxml");
+        Controller controller = SpringFXMLLoader.load("ru/todo100/social/vk/controllers/userGroups.fxml");
         Scene scene = new Scene((Parent) controller.getView(), 700, 500);
         userGroupsWindow = new Stage();
         userGroupsWindow.setTitle("Группы пользователя");
@@ -126,6 +149,10 @@ public class LandingController extends AbstractController implements Initializab
     }
 
     public void exitAction(ActionEvent actionEvent) {
+        accountExit();
+    }
+
+    public void accountExit() {
         java.net.CookieManager manager = new java.net.CookieManager();
         java.net.CookieHandler.setDefault(manager);
         manager.getCookieStore().removeAll();
@@ -133,6 +160,8 @@ public class LandingController extends AbstractController implements Initializab
         init();
         Engine.accessToken = null;
         groupsMenu.setDisable(true);
+        userAvatar.setVisible(false);
+        yourNameLabel.setText("Вход не выполнен");
     }
 
     public void onContactClicked(javafx.scene.input.MouseEvent event) {
@@ -164,9 +193,9 @@ public class LandingController extends AbstractController implements Initializab
 
     public void onActionLogs(ActionEvent actionEvent) {
         Controller controller = SpringFXMLLoader.load("ru/todo100/social/vk/controllers/logs.fxml");
-        Scene scene = new Scene((Parent) controller.getView(), 700, 500);
+        Scene scene = new Scene((Parent) controller.getView(), 900, 500);
         Stage stage = new Stage();
-        stage.setTitle("Вконтакте");
+        stage.setTitle("Логи отправленных сообщений");
         stage.setScene(scene);
         stage.show();
     }

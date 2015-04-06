@@ -8,9 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import ru.todo100.social.LogsService;
+import ru.todo100.social.vk.services.LogsService;
 import ru.todo100.social.vk.Engine;
 import ru.todo100.social.vk.datas.GroupData;
+import ru.todo100.social.vk.datas.LogData;
 import ru.todo100.social.vk.strategy.GroupsOperations;
 import ru.todo100.social.vk.strategy.VideoOperations;
 import ru.todo100.social.vk.strategy.WallOperations;
@@ -80,7 +81,14 @@ public class UserGroupsController extends AbstractController implements Initiali
             @Override
             public void run() {
                 for (GroupData gd : userGroups) {
-                    if (getLogsService().checkLogs(gd.getId(),message,attachment)){
+                    LogData logData = new LogData();
+                    logData.setGroupID(gd.getId());
+                    logData.setGroupName(gd.getName());
+                    logData.setGroupType(gd.getType());
+                    logData.setAttachment(attachment);
+                    logData.setMessage(message);
+
+                    if (getLogsService().checkLogs(logData)){
                         loggerArea.appendText("Duplicate message for: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
                         continue;
                     }
@@ -97,24 +105,29 @@ public class UserGroupsController extends AbstractController implements Initiali
                                 video.add(gd.getId() * -1, video_id, owner_id);
                             }
                             loggerArea.appendText("Publish in groups video: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
-                            getLogsService().insertLogs(gd.getId(),message,attachment);
+                            logData.setPostID(-1);
+                            getLogsService().insertLogs(logData);
                         }
                         continue;
                     }
+                    /*TODO Переделать*/
                     if (pageGroup.getSelectionModel().getSelectedIndex() == 0) {
-                        wall.post(gd.getId() * -1, 0, 0, message, attachment);
+                        Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
+                        logData.setPostID(postID);
                         loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
-                        getLogsService().insertLogs(gd.getId(),message,attachment);
+                        getLogsService().insertLogs(logData);
                     }
                     if (pageGroup.getSelectionModel().getSelectedIndex() == 1 && gd.getType().equals("page")) {
-                        wall.post(gd.getId() * -1, 0, 0, message, attachment);
+                        Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
+                        logData.setPostID(postID);
                         loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
-                        getLogsService().insertLogs(gd.getId(),message,attachment);
+                        getLogsService().insertLogs(logData);
                     }
                     if (pageGroup.getSelectionModel().getSelectedIndex() == 2 && gd.getType().equals("group")) {
-                        wall.post(gd.getId() * -1, 0, 0, message, attachment);
+                        Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
+                        logData.setPostID(postID);
                         loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
-                        getLogsService().insertLogs(gd.getId(),message,attachment);
+                        getLogsService().insertLogs(logData);
                     }
 
                 }

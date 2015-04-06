@@ -3,7 +3,7 @@ package ru.todo100.social.vk.datas;
 import java.net.URI;
 
 public class GroupData {
-    private Long id;
+    private Integer id;
     private String name;
     private String screenName;
     private Integer isClosed;
@@ -33,11 +33,11 @@ public class GroupData {
         this.photoBig = photoBig;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

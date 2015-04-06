@@ -33,7 +33,7 @@ public class GroupsOperations extends Operations {
         super(accessToken);
     }
 
-    public int join(Long group_id) {
+    public int join(Integer group_id) {
 
         try {
             final StringBuilder urlString = getStringBuilder("groups.join");
@@ -116,7 +116,7 @@ public class GroupsOperations extends Operations {
 
     public GroupData getGroupData(JSONObject json) throws JSONException {
         GroupData group = new GroupData();
-        group.setId(json.getLong("id"));
+        group.setId(json.getInt("id"));
         group.setName(json.getString("name"));
         if (json.has("can_post")) {
             group.setCanPost(json.getInt("can_post"));

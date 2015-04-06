@@ -7,7 +7,7 @@
 
 
     <bean id="database" class="ru.todo100.social.Database"/>
-    <bean id="logsService" class="ru.todo100.social.LogsService">
+    <bean id="logsService" class="ru.todo100.social.vk.services.LogsService">
         <property name="database" ref="database"/>
     </bean>
 

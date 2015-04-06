@@ -20,7 +20,7 @@ public class VideoOperations extends Operations{
 
 //    video.getВозвращает информацию о видеозаписях.
 //    video.editРедактирует данные видеозаписи на странице пользователя.
-    public void add(Long target_id,Integer video_id,Integer owner_id) {
+    public void add(int target_id,Integer video_id,Integer owner_id) {
         try {
             StringBuilder urlString = getStringBuilder("video.add");
             urlString.append("&").append("owner_id").append("=").append(owner_id);

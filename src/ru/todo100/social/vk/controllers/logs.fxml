@@ -2,26 +2,57 @@
 
 <!--suppress JavaFxDefaultTag -->
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<GridPane hgap="10" prefHeight="500.0" prefWidth="500.0" vgap="10" xmlns="http://javafx.com/javafx/8"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.todo100.social.vk.controllers.LogsController">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.chart.BubbleChart?>
+<?import javafx.scene.control.Button?>
+
+<GridPane hgap="10" prefHeight="500.0" prefWidth="500.0" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.todo100.social.vk.controllers.LogsController">
     <children>
-        <TableView fx:id="logTableView">
+        <HBox spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+           <children>
+   
+               <Label text="Количество">
+               <HBox.margin>
+                  <Insets top="4.0" />
+               </HBox.margin>
+            </Label>
+               <TextField text="100" fx:id="countField" />
+               <Button onAction="#showAction" text="Показать" />
+           </children>
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+        </HBox>
+        <TableView fx:id="logTableView" GridPane.rowIndex="1">
             <columns>
-                <TableColumn fx:id="groupId" text="ID группы"/>
-                <TableColumn fx:id="groupMessage" text="Сообщение"/>
-                <TableColumn fx:id="groupAttachment" text="Вложение"/>
+                <TableColumn fx:id="groupId" text="ID группы" />
+                <TableColumn fx:id="groupName" text="Группа" />
+                <TableColumn fx:id="groupMessage" text="Сообщение" />
+                <TableColumn fx:id="groupAttachment" text="Вложение" />
+                <TableColumn fx:id="date" text="Дата" />
+                <TableColumn fx:id="linkToPostColumn" />
             </columns>
+         <GridPane.margin>
+            <Insets left="10.0" right="10.0" />
+         </GridPane.margin>
         </TableView>
     </children>
     <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS"/>
+        <ColumnConstraints hgrow="ALWAYS" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints vgrow="ALWAYS"/>
+        <RowConstraints percentHeight="0.0" vgrow="ALWAYS" />
+      <RowConstraints />
     </rowConstraints>
 </GridPane>
