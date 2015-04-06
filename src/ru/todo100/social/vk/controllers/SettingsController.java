@@ -3,7 +3,6 @@ package ru.todo100.social.vk.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import ru.todo100.social.AbstractController;
 import ru.todo100.social.Settings;
 
 import java.net.URL;

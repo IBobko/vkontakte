@@ -22,8 +22,6 @@ import javafx.stage.Stage;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.html.HTMLInputElement;
-import ru.todo100.social.AbstractController;
-import ru.todo100.social.Controller;
 import ru.todo100.social.Install;
 import ru.todo100.social.SpringFXMLLoader;
 import ru.todo100.social.vk.Engine;
@@ -32,7 +30,6 @@ import ru.todo100.social.vk.strategy.UserOperations;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
 import java.util.ResourceBundle;
 
 @SuppressWarnings({"FieldCanBeLocal", "UnusedParameters", "SpellCheckingInspection"})

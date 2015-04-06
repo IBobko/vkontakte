@@ -3,15 +3,13 @@ package ru.todo100.social;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.util.Callback;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import ru.todo100.social.vk.controllers.Controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-
 
 
 public class SpringFXMLLoader {
@@ -24,14 +22,9 @@ public class SpringFXMLLoader {
         try {
             fxmlStream = SpringFXMLLoader.class.getClassLoader().getResourceAsStream(url);
             FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory(new Callback<Class<?>, Object>() {
-                @Override
-                public Object call(Class<?> aClass) {
-                    return APPLICATION_CONTEXT.getBean(aClass);
-                }
-            });
+            loader.setControllerFactory(APPLICATION_CONTEXT::getBean);
 
-            Node view = (Node) loader.load(fxmlStream);
+            Node view = loader.load(fxmlStream);
 
             Controller controller = loader.getController();
             controller.setView(view);

@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import ru.todo100.social.AbstractController;
 import ru.todo100.social.LogsService;
 import ru.todo100.social.vk.datas.LogData;
 

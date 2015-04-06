@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ru.todo100.social.Controller;
+import ru.todo100.social.vk.controllers.Controller;
 import ru.todo100.social.SpringFXMLLoader;
 
 public class Main extends Application {

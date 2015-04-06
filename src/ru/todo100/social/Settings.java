@@ -9,34 +9,43 @@ public class Settings {
     private Database database;
 
     public String getAntiCaptchaKey() {
+        return getValue("anti_captcha_key");
+    }
+
+    public void setAntiCaptchaKey(String key) {
+        setValue("anti_captcha_key",key);
+    }
+
+    public String getValue(String key) {
         try {
-            Statement statement = getDatabase().getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM PARAMS WHERE name='anti_captcha_key'");
+            PreparedStatement preparedStatement = getDatabase().getConnection().prepareStatement("SELECT * FROM PARAMS WHERE name=?");
+            preparedStatement.setString(1,key);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()){
                 return "";
             } else {
                 return resultSet.getString("value");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return "";
     }
 
-    public void setAntiCaptchaKey(String key) {
+    public void setValue(String key,String value) {
         try {
-            Statement statement = getDatabase().getConnection().createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM PARAMS WHERE name='anti_captcha_key'");
+            PreparedStatement preparedStatement = getDatabase().getConnection().prepareStatement("SELECT * FROM PARAMS WHERE name=?");
+            preparedStatement.setString(1,key);
+            ResultSet resultSet = preparedStatement.executeQuery();
             if (!resultSet.next()){
-                PreparedStatement preparedStatement = getDatabase().getConnection().prepareStatement("INSERT INTO params (name,value) VALUES(?,?)");
-                preparedStatement.setString(1,"anti_captcha_key");
-                preparedStatement.setString(2,key);
+                preparedStatement = getDatabase().getConnection().prepareStatement("INSERT INTO params (name,value) VALUES(?,?)");
+                preparedStatement.setString(1,key);
+                preparedStatement.setString(2,value);
                 preparedStatement.execute();
             } else {
-                PreparedStatement preparedStatement = getDatabase().getConnection().prepareStatement("UPDATE params SET value = ? WHERE name = ?");
-                preparedStatement.setString(1,key);
-                preparedStatement.setString(2,"anti_captcha_key");
+                preparedStatement = getDatabase().getConnection().prepareStatement("UPDATE params SET value = ? WHERE name = ?");
+                preparedStatement.setString(1,value);
+                preparedStatement.setString(2,key);
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {

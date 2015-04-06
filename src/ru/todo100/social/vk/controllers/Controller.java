@@ -1,4 +1,4 @@
-package ru.todo100.social;
+package ru.todo100.social.vk.controllers;
 
 
 import javafx.scene.Node;
