@@ -13,19 +13,12 @@ import java.util.List;
  */
 public class LogsService {
     private Database database;
-
-    public LogsService() {
-        System.out.println("Logs support");
-    }
-
     public Database getDatabase() {
         return database;
     }
-
     public void setDatabase(Database database) {
         this.database = database;
     }
-
     public boolean checkLogs(Long group_id, String message, String attachment) {
         try {
             PreparedStatement statement = getDatabase().getConnection().prepareStatement("Select * from logs WHERE group_id=? and message =? and atachment=?");

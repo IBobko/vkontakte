@@ -3,13 +3,14 @@ package ru.todo100.social;
 import java.sql.*;
 
 /**
- * Created by igor on 01.04.15.
+ * @author Igor Bobko
  */
 public class Settings {
+    private Database database;
+
     public String getAntiCaptchaKey() {
         try {
-            Connection c = DriverManager.getConnection("jdbc:hsqldb:file:db", "SA", "");
-            Statement statement = c.createStatement();
+            Statement statement = getDatabase().getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM PARAMS WHERE name='anti_captcha_key'");
             if (!resultSet.next()){
                 return "";
@@ -25,18 +26,29 @@ public class Settings {
 
     public void setAntiCaptchaKey(String key) {
         try {
-            Connection c = DriverManager.getConnection("jdbc:hsqldb:file:db", "SA", "");
-            Statement statement = c.createStatement();
+            Statement statement = getDatabase().getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM PARAMS WHERE name='anti_captcha_key'");
             if (!resultSet.next()){
-                statement.execute("INSERT INTO params (name,value) VALUES('anti_captcha_key','"+key+"')");
+                PreparedStatement preparedStatement = getDatabase().getConnection().prepareStatement("INSERT INTO params (name,value) VALUES(?,?)");
+                preparedStatement.setString(1,"anti_captcha_key");
+                preparedStatement.setString(2,key);
+                preparedStatement.execute();
             } else {
-                statement.execute("UPDATE params SET value = ''"+key+"' WHERE name='anti_captcha_key'");
+                PreparedStatement preparedStatement = getDatabase().getConnection().prepareStatement("UPDATE params SET value = ? WHERE name = ?");
+                preparedStatement.setString(1,key);
+                preparedStatement.setString(2,"anti_captcha_key");
+                preparedStatement.executeUpdate();
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
+    public void setDatabase(Database database) {
+        this.database = database;
+    }
+
+    public Database getDatabase() {
+        return database;
     }
 }

@@ -21,12 +21,12 @@ import java.net.URLConnection;
  */
 
 public class AntiCaptcha {
-    final String KEY = "47a6813d86e034fbf9f74432a2231b0a";
+    private Settings settings;
 
     public String getCaptcha(String id) {
         try {
             while (true) {
-                URL url = new URL("http://anti-captcha.com/res.php?key=" + KEY + "&action=get&id=" + id);
+                URL url = new URL("http://anti-captcha.com/res.php?key=" + getKey() + "&action=get&id=" + id);
                 URLConnection connection = url.openConnection();
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -92,7 +92,7 @@ public class AntiCaptcha {
         HttpPost httppost = new HttpPost("http://antigate.com/in.php");
 
         FileBody bin = new FileBody(file);
-        StringBody key = new StringBody(KEY, ContentType.TEXT_PLAIN);
+        StringBody key = new StringBody(getKey(), ContentType.TEXT_PLAIN);
 
         MultipartEntityBuilder reqEntity = MultipartEntityBuilder.create();
         reqEntity.addPart("file", bin);
@@ -119,6 +119,18 @@ public class AntiCaptcha {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void setSettings(Settings settings) {
+        this.settings = settings;
+    }
+
+    public Settings getSettings() {
+        return settings;
+    }
+
+    public String getKey() {
+        return getSettings().getAntiCaptchaKey();
     }
 
     public enum Response {

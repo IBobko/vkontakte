@@ -156,24 +156,17 @@ public class LandingController extends AbstractController implements Initializab
     }
 
     public void onActionSettings(ActionEvent actionEvent) {
-        try {
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(
-                    this.getClass().getResource("settings.fxml"));
-
-            stage.setScene(new Scene(root));
-            stage.setTitle("Настройки");
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.show();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Controller controller = SpringFXMLLoader.load("ru/todo100/social/vk/controllers/settings.fxml");
+        Scene scene = new Scene((Parent) controller.getView());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Настройки");
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.show();
     }
 
     public void onActionLogs(ActionEvent actionEvent) {
-        Controller controller = (Controller) SpringFXMLLoader.load("ru/todo100/social/vk/controllers/logs.fxml");
+        Controller controller = SpringFXMLLoader.load("ru/todo100/social/vk/controllers/logs.fxml");
         Scene scene = new Scene((Parent) controller.getView(), 700, 500);
         Stage stage = new Stage();
         stage.setTitle("Вконтакте");
