@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
@@ -210,6 +209,7 @@ public class SearchGroupController {
             }
         }
 
+        logger.appendText("Найдено " + groupsList.getItems().size() + " групп." + "\n");
     }
 
     @SuppressWarnings("UnusedParameters")
@@ -247,7 +247,6 @@ public class SearchGroupController {
 
         public BooleanCell() {
             checkBox = new CheckBox();
-            checkBox.setDisable(true);
             checkBox.selectedProperty().addListener(new ChangeListener<Boolean>() {
                 public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                     if (isEditing())

@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import ru.todo100.social.AntiCaptcha;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -19,53 +18,18 @@ import java.util.Map;
 /**
  * @author Igor Bobko
  */
+@SuppressWarnings("StatementWithEmptyBody")
 public class Operations {
     protected String accessToken;
+    protected AntiCaptcha antiCaptcha;
 
     public Operations(String accessToken) {
         this.accessToken = accessToken;
     }
 
-    public String getResponse(String urlString) throws IOException {
-        String[] u = urlString.split("\\?");
-        Map<String, List<String>> params = getQueryParams(urlString);
-
-        StringBuilder jjj = new StringBuilder(u[0]);
-        jjj.append("?");
-
-        for (Map.Entry<String, List<String>> e: params.entrySet()) {
-            jjj.append(e.getKey()).append("=").append(e.getValue().get(0)).append("&");
-        }
-
-        System.out.println(jjj);
-        URL url = new URL(jjj.toString());
-        URLConnection connection = url.openConnection();
-        Charset charset = Charset.forName("UTF8");
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                connection.getInputStream(),charset));
-        String inputLine;
-        StringBuilder builder = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            builder.append(inputLine);
-        }
-        System.out.println(builder.toString());
-
-        JSONObject jsonResponse = null;
-        try {
-            jsonResponse = new JSONObject(builder.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if (jsonResponse.has("error")) {
-            return error(jsonResponse);
-        }
-
-        return builder.toString();
-    }
-
     public static Map<String, List<String>> getQueryParams(String url) {
         try {
-            Map<String, List<String>> params = new HashMap<String, List<String>>();
+            Map<String, List<String>> params = new HashMap<>();
             String[] urlParts = url.split("\\?");
             if (urlParts.length > 1) {
                 String query = urlParts[1];
@@ -80,7 +44,7 @@ public class Operations {
 
                     List<String> values = params.get(key);
                     if (values == null) {
-                        values = new ArrayList<String>();
+                        values = new ArrayList<>();
                         params.put(key, values);
                     }
                     values.add(value);
@@ -93,13 +57,63 @@ public class Operations {
         }
     }
 
+    public AntiCaptcha getAntiCaptcha() {
+        return antiCaptcha;
+    }
+
+    public void setAntiCaptcha(AntiCaptcha antiCaptcha) {
+        this.antiCaptcha = antiCaptcha;
+    }
+
+    public String getResponse(String urlString) throws IOException {
+        String[] u = urlString.split("\\?");
+        Map<String, List<String>> params = getQueryParams(urlString);
+
+        StringBuilder jjj = new StringBuilder(u[0]);
+        jjj.append("?");
+
+        for (Map.Entry<String, List<String>> e : params.entrySet()) {
+            jjj.append(e.getKey()).append("=").append(e.getValue().get(0)).append("&");
+        }
+
+        System.out.println(jjj);
+        URL url = new URL(jjj.toString());
+        URLConnection connection = url.openConnection();
+        Charset charset = Charset.forName("UTF8");
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                connection.getInputStream(), charset));
+        String inputLine;
+        StringBuilder builder = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            builder.append(inputLine);
+        }
+        System.out.println(builder.toString());
+
+        JSONObject jsonResponse = null;
+        try {
+            jsonResponse = new JSONObject(builder.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        assert jsonResponse != null;
+        if (jsonResponse.has("error")) {
+            try {
+                return error(jsonResponse);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return builder.toString();
+    }
+
     public StringBuilder getStringBuilder(String methodName) {
         StringBuilder urlString = new StringBuilder("https://api.vk.com/method/" + methodName + "?");
-        urlString.append("&v=5.27&access_token=").append(accessToken);
+        urlString.append("&v=5.29&access_token=").append(accessToken);
         return urlString;
     }
 
-    public String error(JSONObject response) {
+    public String error(JSONObject response) throws Exception {
         if (response == null) return null;
         try {
             JSONObject error = response.getJSONObject("error");
@@ -126,11 +140,14 @@ public class Operations {
 
                 File f = new File(captcha_sid);
                 boolean newFile = f.createNewFile();
+                if (!newFile) {
+                    throw new Exception("Can't create file");
+                }
 
                 FileOutputStream o =
                         new FileOutputStream(f);
 
-                int read = 0;
+                int read;
                 byte[] bytes = new byte[1024];
 
                 while ((read = in.read(bytes)) != -1) {
@@ -143,32 +160,30 @@ public class Operations {
 
                 String key = antiCaptcha.getCaptcha(f);
 
-                f.delete();
-                //{"error":{"error_msg":"Captcha needed","request_params":[{"value":"1","key":"oauth"},{"value":"groups.join","key":"method"},{"value":"51288365","key":"group_id"},{"value":"5.27","key":"v"}],"error_code":14,"captcha_sid":"789967439515","captcha_img":"http://api.vk.com/captcha.php?sid=789967439515&s=1"}}
-                //Captch neede
+                boolean deleted = f.delete();
+                if (!deleted) {
+                    throw new Exception("Can't delete file");
+                }
+
 
                 if (key == null) return null;
                 JSONArray array = error.getJSONArray("request_params");
                 JSONObject captcha_sid_json = new JSONObject();
-                captcha_sid_json.put("key","captcha_sid");
-                captcha_sid_json.put("value",captcha_sid);
+                captcha_sid_json.put("key", "captcha_sid");
+                captcha_sid_json.put("value", captcha_sid);
 
                 array.put(captcha_sid_json);
 
                 JSONObject captcha_key_json = new JSONObject();
-                captcha_key_json.put("key","captcha_key");
-                captcha_key_json.put("value",key);
+                captcha_key_json.put("key", "captcha_key");
+                captcha_key_json.put("value", key);
 
                 array.put(captcha_key_json);
 
 
                 return repeatRequest(array);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
 

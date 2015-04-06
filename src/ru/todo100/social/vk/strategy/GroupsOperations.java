@@ -90,6 +90,10 @@ public class GroupsOperations extends Operations {
             if (city_id != null) {
                 urlString.append("&city_id=").append(city_id);
             }
+            if (type != null) {
+                urlString.append("&type=").append(type);
+            }
+
          //   LOG.info(urlString.toString());
             final String responseBody = getResponse(urlString.toString());
             JSONObject o = new JSONObject(responseBody);

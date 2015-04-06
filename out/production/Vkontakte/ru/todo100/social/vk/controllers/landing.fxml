@@ -38,7 +38,8 @@
             <menus>
                 <Menu mnemonicParsing="false" text="Контакт">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#closeWindowAction" text="Close" />
+                        <MenuItem mnemonicParsing="false" onAction="#exitAction" text="Выйти" />
+                        <MenuItem mnemonicParsing="false" onAction="#closeWindowAction" text="Закрыть" />
                     </items>
                 </Menu>
                 <Menu fx:id="groupsMenu" mnemonicParsing="false" text="Группы">

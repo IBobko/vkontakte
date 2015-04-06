@@ -5,27 +5,17 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane hgap="10" prefHeight="500.0" prefWidth="500.0" vgap="10" xmlns="http://javafx.com/javafx/8"
-          xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.todo100.social.vk.controllers.SearchGroupController">
-    <columnConstraints>
-        <ColumnConstraints hgrow="ALWAYS"/>
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints/>
-        <RowConstraints/>
-        <RowConstraints/>
-        <RowConstraints/>
-        <RowConstraints/>
-    </rowConstraints>
+<HBox prefHeight="700.0" prefWidth="1000.0" spacing="10" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.todo100.social.vk.controllers.SearchGroupController">
     <children>
-        <HBox spacing="10">
+        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="350.0" spacing="10" GridPane.rowIndex="1">
             <children>
-                <TextField fx:id="searchString" HBox.hgrow="ALWAYS"/>
-                <Button onAction="#searchAction" text="Искать"/>
-            </children>
-        </HBox>
-        <VBox spacing="10" GridPane.rowIndex="1">
-            <children>
+                <HBox spacing="10">
+                    <children>
+                        <TextField fx:id="searchString" HBox.hgrow="ALWAYS"/>
+
+                    </children>
+                </HBox>
                 <CheckBox fx:id="onlyPostCheckbox" text="Искать только где можно постить"/>
                 <TitledPane collapsible="false" text="Регион">
                     <content>
@@ -50,33 +40,42 @@
                     </content>
                 </TitledPane>
                 <TitledPane collapsible="false" text="Типы групп" VBox.vgrow="ALWAYS">
-                    <HBox spacing="10">
-                        <CheckBox fx:id="allGroupsCheckBox" text="Все"/>
-                        <CheckBox fx:id="groupGroupsCheckBox" text="Группы"/>
-                        <CheckBox fx:id="pageGroupsCheckBox" text="Страница"/>
-                        <CheckBox fx:id="eventGroupsCheckBox" text="События"/>
-                    </HBox>
+                    <content>
+                        <HBox spacing="10">
+                            <children>
+                                <CheckBox fx:id="allGroupsCheckBox" text="Все"/>
+                                <CheckBox fx:id="groupGroupsCheckBox" text="Группы"/>
+                                <CheckBox fx:id="pageGroupsCheckBox" text="Страница"/>
+                                <CheckBox fx:id="eventGroupsCheckBox" text="События"/>
+                            </children>
+                        </HBox>
+                    </content>
                 </TitledPane>
+                <Button onAction="#searchAction" text="Искать"/>
 
             </children>
         </VBox>
-
-        <TableView fx:id="groupsList" GridPane.rowIndex="2" onMouseClicked="#groupClick">
-            <columns>
-                <TableColumn fx:id="join" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false"/>
-                <TableColumn fx:id="groupType" maxWidth="80.0" minWidth="80.0" resizable="false" text="Тип"/>
-                <TableColumn fx:id="groupIdColumn" maxWidth="80.0" minWidth="80.0" resizable="false" text="ID"/>
-                <TableColumn fx:id="groupNameColumn" text="Наименование" />
-                <TableColumn fx:id="groupCanPostedColumn" minWidth="40.0" prefWidth="40.0" text="Можно постить?"/>
-            </columns>
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
-            </columnResizePolicy>
-        </TableView>
-        <Button onAction="#invite" text="Вступить" GridPane.rowIndex="3"/>
-        <TextArea fx:id="logger" editable="false" GridPane.rowIndex="4"/>
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+            <children>
+                <TableView fx:id="groupsList" onMouseClicked="#groupClick" GridPane.rowIndex="2" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="join" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" resizable="false"/>
+                        <TableColumn fx:id="groupType" maxWidth="80.0" minWidth="80.0" resizable="false" text="Тип"/>
+                        <TableColumn fx:id="groupIdColumn" maxWidth="80.0" minWidth="80.0" resizable="false" text="ID"/>
+                        <TableColumn fx:id="groupNameColumn" text="Наименование"/>
+                        <TableColumn fx:id="groupCanPostedColumn" minWidth="40.0" prefWidth="40.0"
+                                     text="Можно постить?"/>
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
+                </TableView>
+                <Button onAction="#invite" text="Вступить" GridPane.rowIndex="3"/>
+                <TextArea fx:id="logger" editable="false" GridPane.rowIndex="4"/>
+            </children>
+        </VBox>
     </children>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </padding>
-</GridPane>
+</HBox>
