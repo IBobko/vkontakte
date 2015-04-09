@@ -21,7 +21,8 @@ import java.util.Map;
 @SuppressWarnings("StatementWithEmptyBody")
 public class Operations {
     protected String accessToken;
-    protected AntiCaptcha antiCaptcha;
+
+    public static AntiCaptcha antiCaptcha;
 
     public Operations(String accessToken) {
         this.accessToken = accessToken;
@@ -125,6 +126,8 @@ public class Operations {
             if (error_code == 6) {
                 try {
                     Thread.sleep(3000);
+                    JSONArray array = error.getJSONArray("request_params");
+                    return repeatRequest(array);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -153,9 +156,6 @@ public class Operations {
                 while ((read = in.read(bytes)) != -1) {
                     o.write(bytes, 0, read);
                 }
-                System.out.println("/home/igor/" + captcha_sid);
-
-                AntiCaptcha antiCaptcha = new AntiCaptcha();
 
 
                 String key = antiCaptcha.getCaptcha(f);
@@ -187,7 +187,7 @@ public class Operations {
             e.printStackTrace();
         }
 
-        return "{}";
+        return "{response: {post_id:0}}";
     }
 
     public String repeatRequest(JSONArray params) {

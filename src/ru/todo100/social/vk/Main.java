@@ -4,8 +4,10 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ru.todo100.social.AntiCaptcha;
 import ru.todo100.social.vk.controllers.Controller;
 import ru.todo100.social.SpringFXMLLoader;
+import ru.todo100.social.vk.strategy.Operations;
 
 public class Main extends Application {
 
@@ -13,9 +15,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         Controller controller = (Controller) SpringFXMLLoader.load("ru/todo100/social/vk/controllers/landing.fxml");
         Scene scene = new Scene((Parent) controller.getView(), 700, 500);
+
+        Operations.antiCaptcha = (AntiCaptcha) SpringFXMLLoader.APPLICATION_CONTEXT.getBean("antiCaptcha");
 
         Engine.application = this;
 

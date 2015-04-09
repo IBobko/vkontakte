@@ -110,6 +110,7 @@ public class WallOperations extends Operations {
             }
             String responseBody = getResponse(urlString.toString());
             JSONObject object = new JSONObject(responseBody);
+            System.out.println(object.toString());
             return object.getJSONObject("response").getInt("post_id");
         } catch (IOException | JSONException e) {
             e.printStackTrace();
