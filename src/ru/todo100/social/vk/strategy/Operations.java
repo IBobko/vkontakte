@@ -166,7 +166,7 @@ public class Operations {
                 }
 
 
-                if (key == null) return null;
+                if (key == null)  return "{response: {post_id:0}}";
                 JSONArray array = error.getJSONArray("request_params");
                 JSONObject captcha_sid_json = new JSONObject();
                 captcha_sid_json.put("key", "captcha_sid");

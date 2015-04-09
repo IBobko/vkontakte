@@ -7,15 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abf1a9c5-0006-4013-acfe-a417f2000778" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jar" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jnlp" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/JavaFXApp.jnlp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/Main.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/Operations.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/Operations.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/SpringFXMLLoader.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/SpringFXMLLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/WallOperations.java" afterPath="$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/WallOperations.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/vk.log" afterPath="$PROJECT_DIR$/db/vk.log" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.log" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.log" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/vk.properties" afterPath="$PROJECT_DIR$/db/vk.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.properties" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/vk.script" afterPath="$PROJECT_DIR$/db/vk.script" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.script" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/db/vk.script" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Vkontakte.iws" />
@@ -91,8 +89,8 @@
       <file leaf-file-name="Operations.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/Operations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28" vertical-offset="2511" max-vertical-offset="3420">
-              <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.91" vertical-offset="2703" max-vertical-offset="3420">
+              <caret line="168" column="33" selection-start-line="168" selection-start-column="33" selection-end-line="168" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -897,7 +895,7 @@
       <workItem from="1428147403545" duration="11000" />
       <workItem from="1428147477792" duration="39486000" />
       <workItem from="1428497273238" duration="866000" />
-      <workItem from="1428561936343" duration="799000" />
+      <workItem from="1428561936343" duration="1012000" />
     </task>
     <task id="LOCAL-00001" summary="VK-2">
       <created>1427029674624</created>
@@ -1145,11 +1143,17 @@
       <option name="project" value="LOCAL" />
       <updated>1428353729043</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="needed todo antiCaptcha">
+      <created>1428562749700</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1428562749700</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129601000" />
+    <option name="totallyTimeSpent" value="129814000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1674,8 +1678,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/todo100/social/vk/strategy/Operations.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28" vertical-offset="2511" max-vertical-offset="3420">
-          <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.91" vertical-offset="2703" max-vertical-offset="3420">
+          <caret line="168" column="33" selection-start-line="168" selection-start-column="33" selection-end-line="168" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
