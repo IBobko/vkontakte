@@ -162,8 +162,8 @@ public class SearchGroupController {
         final GroupsOperations groups = new GroupsOperations(Engine.accessToken);
 
         Integer count = 100;
-        Integer maxCount = 100;
-        Integer maxCountIter = 10;
+        Integer maxCount = 1000;
+        Integer maxCountIter = 20;
         Integer country_id = null;
         Integer city_id = null;
 

@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import ru.todo100.social.AntiCaptcha;
 
 import java.io.*;
+import java.net.ConnectException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -76,36 +77,44 @@ public class Operations {
         for (Map.Entry<String, List<String>> e : params.entrySet()) {
             jjj.append(e.getKey()).append("=").append(e.getValue().get(0)).append("&");
         }
-
+        String result = "";
         System.out.println(jjj);
-        URL url = new URL(jjj.toString());
-        URLConnection connection = url.openConnection();
-        Charset charset = Charset.forName("UTF8");
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                connection.getInputStream(), charset));
-        String inputLine;
-        StringBuilder builder = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            builder.append(inputLine);
-        }
-        System.out.println(builder.toString());
-
-        JSONObject jsonResponse = null;
-        try {
-            jsonResponse = new JSONObject(builder.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        assert jsonResponse != null;
-        if (jsonResponse.has("error")) {
+        boolean wasConnect = true;
+        do {
             try {
-                return error(jsonResponse);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+                URL url = new URL(jjj.toString());
+                URLConnection connection = url.openConnection();
+                Charset charset = Charset.forName("UTF8");
+                BufferedReader in = new BufferedReader(new InputStreamReader(
+                        connection.getInputStream(), charset));
+                String inputLine;
+                StringBuilder builder = new StringBuilder();
+                while ((inputLine = in.readLine()) != null) {
+                    builder.append(inputLine);
+                }
+                System.out.println(builder.toString());
 
-        return builder.toString();
+                JSONObject jsonResponse = null;
+                try {
+                    jsonResponse = new JSONObject(builder.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                assert jsonResponse != null;
+                if (jsonResponse.has("error")) {
+                    try {
+                        return error(jsonResponse);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                result = builder.toString();
+
+            } catch(ConnectException e) {
+                wasConnect = false;
+            }
+        } while(!wasConnect);
+        return result;
     }
 
     public StringBuilder getStringBuilder(String methodName) {
@@ -120,7 +129,7 @@ public class Operations {
             JSONObject error = response.getJSONObject("error");
             int error_code = error.getInt("error_code");
             if (error_code == 15) {
-
+                return "{response: \"0\"}";
             }
 
             if (error_code == 6) {

@@ -113,7 +113,7 @@ public class AntiCaptcha {
             while ((inputLine = in.readLine()) != null) {
                 builder.append(inputLine);
             }
-
+            System.out.println(builder.toString());
             return builder.toString().split("\\|")[1];
         } catch (IOException e) {
             e.printStackTrace();
