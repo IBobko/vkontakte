@@ -192,11 +192,16 @@ public class SearchGroupController {
         String type = String.join(",", typeList);
 
 
+        Integer closedGroups = 0;
+
         final List<GroupData> groupsResult = new ArrayList<>();
         for (int i = 0; i < maxCountIter; i++) {
             final List<GroupData> result = groups.search(searchString, i * count, maxCount, country_id, city_id, type);
             for (GroupData group : result) {
-                if (group.getIsClosed() == 1) continue;
+                if (group.getIsClosed() == 1){
+                    closedGroups++;
+                    continue;
+                }
                 if (onlyPostCheckbox.isSelected() && group.getCanPost() == 0) {
                     continue;
                 }
@@ -206,13 +211,10 @@ public class SearchGroupController {
 
             }
             System.out.println(i);
-
-            //if (!(groupsResult.size() < maxCount && result.size() == maxCount)) {
-            //    break;
-            //}
         }
 
         logger.appendText("Найдено " + groupsList.getItems().size() + " групп." + "\n");
+        logger.appendText("Закрыто " + closedGroups + " групп." + "\n");
     }
 
     @SuppressWarnings("UnusedParameters")
