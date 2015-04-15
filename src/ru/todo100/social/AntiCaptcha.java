@@ -126,6 +126,12 @@ public class AntiCaptcha {
                 return sendFileAndGetId(file);
 
             }
+            if (builder.toString().equals(Response.ERROR_WRONG_USER_KEY.toString())) {
+                Thread.sleep(1000);
+                return sendFileAndGetId(file);
+
+            }
+
 
             return builder.toString().split("\\|")[1];
         } catch (IOException e) {
@@ -156,6 +162,7 @@ public class AntiCaptcha {
         ERROR_NO_SUCH_CAPCHA_ID,
         ERROR_CAPTCHA_UNSOLVABLE,
         ERROR_WRONG_USER_KEY,
-        ERROR_NO_SLOT_AVAILABLE
+        ERROR_NO_SLOT_AVAILABLE,
+
     }
 }
