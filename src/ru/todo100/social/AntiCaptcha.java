@@ -43,6 +43,12 @@ public class AntiCaptcha {
                     continue;
                 }
 
+                if (answer[0].equals(Response.ERROR_NO_SLOT_AVAILABLE.toString())) {
+                    System.out.println("No slot available");
+                    Thread.sleep(1000);
+                    continue;
+                }
+
                 if (answer[0].equals(Response.ERROR_CAPTCHA_UNSOLVABLE.toString())) {
                     System.out.println("Error captcha unsolvable");
                     break;
@@ -114,8 +120,17 @@ public class AntiCaptcha {
                 builder.append(inputLine);
             }
             System.out.println(builder.toString());
+
+            if (builder.toString().equals(Response.ERROR_NO_SLOT_AVAILABLE.toString())) {
+                Thread.sleep(1000);
+                return sendFileAndGetId(file);
+
+            }
+
             return builder.toString().split("\\|")[1];
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return null;
@@ -140,6 +155,7 @@ public class AntiCaptcha {
         ERROR_WRONG_ID_FORMAT,
         ERROR_NO_SUCH_CAPCHA_ID,
         ERROR_CAPTCHA_UNSOLVABLE,
-        ERROR_WRONG_USER_KEY
+        ERROR_WRONG_USER_KEY,
+        ERROR_NO_SLOT_AVAILABLE
     }
 }

@@ -194,7 +194,6 @@ public class SearchGroupController {
 
         Integer closedGroups = 0;
 
-        final List<GroupData> groupsResult = new ArrayList<>();
         for (int i = 0; i < maxCountIter; i++) {
             final List<GroupData> result = groups.search(searchString, i * count, maxCount, country_id, city_id, type);
             for (GroupData group : result) {
@@ -206,11 +205,10 @@ public class SearchGroupController {
                     continue;
                 }
                 groupsList.getItems().add(group);
-                Thread.sleep(10);
-                groupsResult.add(group);
-
             }
-            System.out.println(i);
+            Thread.sleep(10);
+            Thread.yield();
+
         }
 
         logger.appendText("Найдено " + groupsList.getItems().size() + " групп." + "\n");

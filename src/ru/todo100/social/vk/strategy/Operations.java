@@ -153,24 +153,38 @@ public class Operations {
                 String captchaImg = error.getString("captcha_img");
                 String captcha_sid = error.getString("captcha_sid");
                 URL url = new URL(captchaImg);
-                URLConnection connection = url.openConnection();
-                InputStream in = connection.getInputStream();
 
-                File f = new File(captcha_sid);
-                boolean newFile = f.createNewFile();
-                if (!newFile) {
-                    throw new Exception("Can't create file");
-                }
+                boolean wasConnected = false;
+                InputStream in;
+                File f = null;
+                do {
+                    try {
+                        URLConnection connection = url.openConnection();
 
-                FileOutputStream o =
-                        new FileOutputStream(f);
 
-                int read;
-                byte[] bytes = new byte[1024];
+                        in = connection.getInputStream();
 
-                while ((read = in.read(bytes)) != -1) {
-                    o.write(bytes, 0, read);
-                }
+
+                        f = new File(captcha_sid);
+                        boolean newFile = f.createNewFile();
+                        if (!newFile) {
+                            throw new Exception("Can't create file");
+                        }
+
+                        FileOutputStream o =
+                                new FileOutputStream(f);
+
+                        int read;
+                        byte[] bytes = new byte[1024];
+
+                        while ((read = in.read(bytes)) != -1) {
+                            o.write(bytes, 0, read);
+                        }
+                    } catch(ConnectException e) {
+                        continue;
+                    }
+                    wasConnected = true;
+                } while(!wasConnected);
 
 
                 String key = antiCaptcha.getCaptcha(f);
