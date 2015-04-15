@@ -162,8 +162,8 @@ public class SearchGroupController {
         final GroupsOperations groups = new GroupsOperations(Engine.accessToken);
 
         Integer count = 100;
-        Integer maxCount = 1000;
-        Integer maxCountIter = 20;
+        Integer maxCount = 100;
+        Integer maxCountIter = 10;
         Integer country_id = null;
         Integer city_id = null;
 
@@ -203,10 +203,13 @@ public class SearchGroupController {
                 groupsList.getItems().add(group);
                 Thread.sleep(10);
                 groupsResult.add(group);
+
             }
-            if (!(groupsResult.size() < maxCount && result.size() == maxCount)) {
-                break;
-            }
+            System.out.println(i);
+
+            //if (!(groupsResult.size() < maxCount && result.size() == maxCount)) {
+            //    break;
+            //}
         }
 
         logger.appendText("Найдено " + groupsList.getItems().size() + " групп." + "\n");

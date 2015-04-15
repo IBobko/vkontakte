@@ -21,6 +21,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.html.HTMLInputElement;
@@ -29,6 +31,9 @@ import ru.todo100.social.SpringFXMLLoader;
 import ru.todo100.social.vk.Engine;
 import ru.todo100.social.vk.datas.UserData;
 import ru.todo100.social.vk.strategy.UserOperations;
+import ru.todo100.social.vk.strategy.VkontakteApi;
+import ru.todo100.social.vk.strategy.impl.VkontakteFactoryApi;
+import sun.plugin.javascript.JSObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,6 +50,9 @@ public class LandingController extends AbstractController implements Initializab
     public GridPane gridPane;
     public Menu groupsMenu;
     public ImageView userAvatar;
+    private VkontakteFactoryApi vkontakteFactoryApi;
+
+    private VkontakteApi vkontakteApi;
 
     @FXML
     private Label yourNameLabel;
@@ -65,16 +73,53 @@ public class LandingController extends AbstractController implements Initializab
     protected void init() {
         groupsMenu.setDisable(true);
         webView.getEngine().load("https://oauth.vk.com/authorize?client_id=" + this.clientId + "&scope=friends,messages,wall,groups,video&redirect_uri=https://oauth.vk.com/blank.html&display=page&v=5.27N&response_type=token");
+        webView.getEngine().getLoadWorker().exceptionProperty().addListener(new ChangeListener<Throwable>() {
+            @Override
+            public void changed(ObservableValue<? extends Throwable> observable, Throwable oldValue, Throwable newValue) {
+                System.out.println("Hello");
+            }
+        });
+
+        webView.getEngine().getLoadWorker().messageProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Hello");
+        });
+
+        webView.getEngine().getLoadWorker().progressProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Hello");
+        });
+
+        webView.getEngine().getLoadWorker().runningProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Hello");
+        });
+
+        webView.getEngine().getLoadWorker().workDoneProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Hello");
+        });
+
+        webView.getEngine().getLoadWorker().valueProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Hello");
+        });
+
+        webView.getEngine().getLoadWorker().valueProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Hello");
+        });
+
+
+
+
+
         webView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
             @Override
             public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
+                System.out.println("Clicked");
                 if (newValue == Worker.State.SUCCEEDED) {
                     if (webView.getEngine().getLocation().contains("#")) {
                         webView.setVisible(false);
                         String[] splitLocation = webView.getEngine().getLocation().split("#access_token=");
                         String[] temp = splitLocation[1].split("&");
+                        getVkontakteFactoryApi().addVkontakteApi(login, temp[0]);
                         Engine.accessToken = temp[0];
-                        UserOperations user = new UserOperations(Engine.accessToken);
+                        UserOperations user = getVkontakteFactoryApi().getDefaultVkontakteApi().getUserOperations();
                         UserData userData = user.get();
                         groupsMenu.setDisable(false);
                         yourNameLabel.setText(yourNameText.replace("#YOUR_VK_NAME", userData.getFirstName() + " " + userData.getLastName()));
@@ -91,8 +136,6 @@ public class LandingController extends AbstractController implements Initializab
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-
-
                     }
 
                     NodeList nodes = webView.getEngine().getDocument().getElementsByTagName("input");
@@ -103,10 +146,11 @@ public class LandingController extends AbstractController implements Initializab
                         }
                         if (element.getNodeValue().equals("pass")) {
                             HTMLInputElement passwordElement = (HTMLInputElement) nodes.item(i);
-                            //passwordElement.setValue(password);
+                            passwordElement.setValue(password);
                         }
                         if (element.getNodeValue().equals("submit")) {
                             HTMLInputElement submitElement = (HTMLInputElement) nodes.item(i);
+                            //submitElement.
                             //submitElement.click();
                         }
                     }
@@ -124,7 +168,6 @@ public class LandingController extends AbstractController implements Initializab
         userGroupsWindow.show();
 
     }
-
 
     public void searchGroups(ActionEvent actionEvent) {
         try {
@@ -162,9 +205,8 @@ public class LandingController extends AbstractController implements Initializab
     public void onContactClicked(javafx.scene.input.MouseEvent event) {
         if (event.getClickCount() == 2) {
             if (Engine.accessToken != null) {
-                UserOperations userOperations = new UserOperations(Engine.accessToken);
+                UserOperations userOperations = getVkontakteFactoryApi().getDefaultVkontakteApi().getUserOperations();
                 UserData user = userOperations.get();
-
                 HostServicesDelegate hostServices = HostServicesFactory.getInstance(Engine.application);
                 String url = "http://vk.com/id" + user.getId();
                 hostServices.showDocument(url);
@@ -193,5 +235,13 @@ public class LandingController extends AbstractController implements Initializab
         stage.setTitle("Логи отправленных сообщений");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public VkontakteFactoryApi getVkontakteFactoryApi() {
+        return vkontakteFactoryApi;
+    }
+
+    public void setVkontakteFactoryApi(VkontakteFactoryApi vkontakteFactoryApi) {
+        this.vkontakteFactoryApi = vkontakteFactoryApi;
     }
 }

@@ -1,5 +1,6 @@
 package ru.todo100.social.vk.strategy;
 
+import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,109 +13,115 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * @author Igor Bobko
  */
 @SuppressWarnings("StatementWithEmptyBody")
 public class Operations {
-    protected String accessToken;
-
+    private Logger LOG = Logger.getLogger(Operations.class);
     public static AntiCaptcha antiCaptcha;
+    protected String accessToken;
 
     public Operations(String accessToken) {
         this.accessToken = accessToken;
+
     }
 
-    public static Map<String, List<String>> getQueryParams(String url) {
+    /**
+     * This method encode string url to http format
+     *
+     * @param url Url String for encoded
+     * @return encodedString
+     */
+     public String getEncodedUrlString(String url) {
+        StringBuilder encodedString = new StringBuilder();
         try {
-            Map<String, List<String>> params = new HashMap<>();
-            String[] urlParts = url.split("\\?");
+            final String[] urlParts = url.split("\\?");
+            encodedString.append(urlParts[0]);
             if (urlParts.length > 1) {
-                String query = urlParts[1];
-                for (String param : query.split("&")) {
-                    String[] pair = param.split("=");
+                encodedString.append("?");
+                final String query = urlParts[1];
+                List<String> pairsList = new ArrayList<>();
+                for (final String param : query.split("&")) {
+                    final String[] pair = param.split("=");
                     if (pair.length < 2) continue;
-                    String key = URLEncoder.encode(pair[0], "UTF-8");
-                    String value = "";
-                    if (pair.length > 1) {
-                        value = URLEncoder.encode(pair[1], "UTF-8");
-                    }
-
-                    List<String> values = params.get(key);
-                    if (values == null) {
-                        values = new ArrayList<>();
-                        params.put(key, values);
-                    }
-                    values.add(value);
+                    final String key = URLEncoder.encode(pair[0], "UTF-8");
+                    final String value = URLEncoder.encode(pair[1], "UTF-8");
+                    pairsList.add(key + "=" + value);
                 }
+                encodedString.append(String.join("&",pairsList));
             }
-
-            return params;
+            return encodedString.toString();
         } catch (UnsupportedEncodingException ex) {
             throw new AssertionError(ex);
         }
     }
 
-    public AntiCaptcha getAntiCaptcha() {
-        return antiCaptcha;
-    }
-
-    public void setAntiCaptcha(AntiCaptcha antiCaptcha) {
-        this.antiCaptcha = antiCaptcha;
-    }
-
     public String getResponse(String urlString) throws IOException {
-        String[] u = urlString.split("\\?");
-        Map<String, List<String>> params = getQueryParams(urlString);
-
-        StringBuilder jjj = new StringBuilder(u[0]);
-        jjj.append("?");
-
-        for (Map.Entry<String, List<String>> e : params.entrySet()) {
-            jjj.append(e.getKey()).append("=").append(e.getValue().get(0)).append("&");
+        String encodedUrl = getEncodedUrlString(urlString);
+        String siteResponse =  getSiteResponse(encodedUrl);
+        LOG.info(siteResponse);
+        try {
+            JSONObject jsonResponse = new JSONObject(siteResponse);
+            if (jsonResponse.has("error")) {
+                try {
+                    return error(jsonResponse);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        String result = "";
-        System.out.println(jjj);
-        boolean wasConnect = true;
+        return siteResponse;
+    }
+
+    /**
+     * Этот метод получает ответ по указанному адресу и в случае ConnectionException делает коннект ровно пять раз.
+     * Если соединение после пяти раз не удается сделать, выбрасывает окончательный ConnectException
+     * Пришедший URL должен быть закодирован
+     *
+     * @param urlString адрес
+     * @return Результат ответа сервера
+     * @throws IOException
+     */
+
+    public String getSiteResponse(String urlString) throws IOException {
+        final Integer MAX_CONNECTION_COUNT = 5;
+        Integer counter = 0;
+        boolean connected = false;
+        StringBuilder builder = new StringBuilder();
         do {
+            builder.setLength(0);
+            if (counter >= MAX_CONNECTION_COUNT) {
+                throw new ConnectException("Error connection to:" + urlString);
+            }
+            counter++;
             try {
-                URL url = new URL(jjj.toString());
+                LOG.info(urlString);
+                URL url = new URL(urlString);
                 URLConnection connection = url.openConnection();
                 Charset charset = Charset.forName("UTF8");
                 BufferedReader in = new BufferedReader(new InputStreamReader(
                         connection.getInputStream(), charset));
                 String inputLine;
-                StringBuilder builder = new StringBuilder();
+
                 while ((inputLine = in.readLine()) != null) {
                     builder.append(inputLine);
                 }
-                System.out.println(builder.toString());
-
-                JSONObject jsonResponse = null;
+                connected = true;
+            } catch (ConnectException e) {
                 try {
-                    jsonResponse = new JSONObject(builder.toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    Thread.sleep(1000);
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
                 }
-                assert jsonResponse != null;
-                if (jsonResponse.has("error")) {
-                    try {
-                        return error(jsonResponse);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                result = builder.toString();
-
-            } catch(ConnectException e) {
-                wasConnect = false;
             }
-        } while(!wasConnect);
-        return result;
+        } while (!connected);
+        return builder.toString();
     }
 
     public StringBuilder getStringBuilder(String methodName) {
@@ -141,7 +148,6 @@ public class Operations {
                     e.printStackTrace();
                 }
             }
-
 
             if (error_code == 14) {
                 String captchaImg = error.getString("captcha_img");
@@ -175,7 +181,7 @@ public class Operations {
                 }
 
 
-                if (key == null)  return "{response: {post_id:0}}";
+                if (key == null) return "{response: {post_id:0}}";
                 JSONArray array = error.getJSONArray("request_params");
                 JSONObject captcha_sid_json = new JSONObject();
                 captcha_sid_json.put("key", "captcha_sid");
@@ -186,10 +192,7 @@ public class Operations {
                 JSONObject captcha_key_json = new JSONObject();
                 captcha_key_json.put("key", "captcha_key");
                 captcha_key_json.put("value", key);
-
                 array.put(captcha_key_json);
-
-
                 return repeatRequest(array);
             }
         } catch (JSONException | IOException e) {

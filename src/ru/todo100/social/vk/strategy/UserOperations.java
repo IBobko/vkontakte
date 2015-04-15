@@ -29,7 +29,7 @@ public class UserOperations extends Operations {
                 urlString.append("user_ids=").append(user_ids);
             }
 
-                urlString.append("&fields=").append("photo_200_orig");
+            urlString.append("&fields=").append("photo_200_orig");
 
 
             JSONObject object = new JSONObject(getResponse(urlString.toString()));

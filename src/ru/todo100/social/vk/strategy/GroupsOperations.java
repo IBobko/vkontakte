@@ -6,35 +6,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ru.todo100.social.vk.datas.GroupData;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import org.apache.log4j.Logger;
-
 /**
  * @author Igor Bobko on 08.02.15.
- * GroupsOperations
+ *         GroupsOperations
  */
 public class GroupsOperations extends Operations {
-   // private static Logger LOG = Logger.getLogger(GroupsOperations.class);
-    @SuppressWarnings("UnusedDeclaration")
-    enum Type {
-        event,
-        group,
-        page
-    }
     public GroupsOperations(String accessToken) {
         super(accessToken);
     }
 
     public int join(Integer group_id) {
-
         try {
             final StringBuilder urlString = getStringBuilder("groups.join");
             urlString.append("&group_id").append("=").append(group_id);
@@ -71,7 +56,7 @@ public class GroupsOperations extends Operations {
         return null;
     }
 
-    public List<GroupData> search(String search, Integer offset, Integer count, Integer country_id, Integer city_id,String type) {
+    public List<GroupData> search(String search, Integer offset, Integer count, Integer country_id, Integer city_id, String type) {
         try {
             final StringBuilder urlString = getStringBuilder("groups.search");
             urlString.append("&q=").append(search);
@@ -94,7 +79,7 @@ public class GroupsOperations extends Operations {
                 urlString.append("&type=").append(type);
             }
 
-         //   LOG.info(urlString.toString());
+            //   LOG.info(urlString.toString());
             final String responseBody = getResponse(urlString.toString());
             JSONObject o = new JSONObject(responseBody);
             JSONObject response = o.getJSONObject("response");
@@ -154,7 +139,15 @@ public class GroupsOperations extends Operations {
 
     public String getFields() {
         String fields = "city, country, place, description, wiki_page, members_count, counters, start_date, finish_date, can_post, can_see_all_posts, activity, status, contacts, links, fixed_post, verified, site, can_create_topic";
-        return fields.replace(" ","");
+        return fields.replace(" ", "");
+    }
+
+    // private static Logger LOG = Logger.getLogger(GroupsOperations.class);
+    @SuppressWarnings("UnusedDeclaration")
+    enum Type {
+        event,
+        group,
+        page
     }
 //    groups.isMemberВозвращает информацию о том, является ли пользователь участником сообщества.
 //    groups.getByIdВозвращает информацию о заданном сообществе или о нескольких сообществах.

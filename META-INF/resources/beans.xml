@@ -27,7 +27,13 @@
         <property name="logsService" ref="logsService"/>
     </bean>
 
-    <bean id="landingController" class="ru.todo100.social.vk.controllers.LandingController"/>
+    <bean id="vkontakteFactoryApi" class="ru.todo100.social.vk.strategy.impl.VkontakteFactoryApi"/>
+
+
+
+    <bean id="landingController" class="ru.todo100.social.vk.controllers.LandingController">
+        <property name="vkontakteFactoryApi" ref="vkontakteFactoryApi"/>
+    </bean>
 
     <bean id="userGroupsController" class="ru.todo100.social.vk.controllers.UserGroupsController">
         <property name="logsService" ref="logsService"/>
@@ -36,6 +42,8 @@
     <bean id="settingsController" class="ru.todo100.social.vk.controllers.SettingsController">
         <property name="settings" ref="settings"/>
     </bean>
+
+
 
 </beans>
 
