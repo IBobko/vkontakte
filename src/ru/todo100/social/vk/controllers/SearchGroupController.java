@@ -12,6 +12,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import org.apache.log4j.Appender;
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Layout;
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.ErrorHandler;
+import org.apache.log4j.spi.Filter;
+import org.apache.log4j.spi.LoggingEvent;
 import org.springframework.util.StringUtils;
 import ru.todo100.social.vk.Engine;
 import ru.todo100.social.vk.datas.DatabaseData;
@@ -48,6 +55,71 @@ public class SearchGroupController {
     @SuppressWarnings("unchecked")
     @FXML
     void initialize() {
+        Logger.getRootLogger().addAppender(new Appender() {
+            @Override
+            public void addFilter(Filter filter) {
+
+            }
+
+            @Override
+            public Filter getFilter() {
+                return null;
+            }
+
+            @Override
+            public void clearFilters() {
+
+            }
+
+            @Override
+            public void close() {
+
+            }
+
+            @Override
+            public void doAppend(LoggingEvent loggingEvent) {
+
+            }
+
+            @Override
+            public String getName() {
+                return null;
+            }
+
+            @Override
+            public void setErrorHandler(ErrorHandler errorHandler) {
+
+            }
+
+            @Override
+            public ErrorHandler getErrorHandler() {
+                return null;
+            }
+
+            @Override
+            public void setLayout(Layout layout) {
+
+            }
+
+            @Override
+            public Layout getLayout() {
+                return null;
+            }
+
+            @Override
+            public void setName(String s) {
+
+            }
+
+            @Override
+            public boolean requiresLayout() {
+                return false;
+            }
+        });
+
+        Logger.getRootLogger().info("Привет");
+
+
         countryInit();
         groupType.setCellValueFactory(new PropertyValueFactory<GroupData, String>("type"));
 
@@ -222,12 +294,12 @@ public class SearchGroupController {
         Integer joinedGroups = 0;
         for (int i = 0; i < groupsList.getItems().size(); i++) {
             GroupData group = (GroupData) groupsList.getItems().get(i);
-            groups.join(group.getId());
-            joinedGroups++;
-            if (group.getCanPost() == 0) {
+            if (groups.join(group.getId()) == 1) {
+                joinedGroups++;
+                logger.appendText("You joined in " + group.getName() + "\n");
+            } else {
                 closedGroups++;
             }
-            logger.appendText("You joined in " + group.getName() + "\n");
         }
         logger.appendText("Total groups " + groupsList.getItems().size() + "\n");
         logger.appendText("Joined groups " + joinedGroups + "\n");

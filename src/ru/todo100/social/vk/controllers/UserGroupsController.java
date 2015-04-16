@@ -81,56 +81,64 @@ public class UserGroupsController extends AbstractController implements Initiali
             @Override
             public void run() {
                 for (GroupData gd : userGroups) {
-                    LogData logData = new LogData();
-                    logData.setGroupID(gd.getId());
-                    logData.setGroupName(gd.getName());
-                    logData.setGroupType(gd.getType());
-                    logData.setAttachment(attachment);
-                    logData.setMessage(message);
+                    try {
+                        LogData logData = new LogData();
+                        logData.setGroupID(gd.getId());
+                        logData.setGroupName(gd.getName());
+                        logData.setGroupType(gd.getType());
+                        logData.setAttachment(attachment);
+                        logData.setMessage(message);
+                        if (getLogsService().checkLogs(logData)) {
+                            loggerArea.appendText("Duplicate message for: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
+                            continue;
+                        }
+                        try {
+                            Thread.sleep(sleep);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-                    if (getLogsService().checkLogs(logData)){
-                        loggerArea.appendText("Duplicate message for: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
-                        continue;
-                    }
+                        if (inVideo.isSelected()) {
+                            if (gd.getType().equals("group")) {
+                                Matcher m = p.matcher(attachment);
+                                boolean b = m.matches();
+                                if (b) {
+                                    Integer owner_id = Integer.parseInt(m.group(1));
+                                    Integer video_id = Integer.parseInt(m.group(2));
 
-                    if (inVideo.isSelected()) {
-                        if (gd.getType().equals("group")) {
-                            Matcher m = p.matcher(attachment);
-                            boolean b = m.matches();
-                            if (b) {
-                                Integer owner_id = Integer.parseInt(m.group(1));
-                                Integer video_id = Integer.parseInt(m.group(2));
-
-                                System.out.println(owner_id + " " + video_id);
-                                video.add(gd.getId() * -1, video_id, owner_id);
+                                    System.out.println(owner_id + " " + video_id);
+                                    video.add(gd.getId() * -1, video_id, owner_id);
+                                }
+                                loggerArea.appendText("Publish in groups video: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
+                                logData.setPostID(-1);
+                                getLogsService().insertLogs(logData);
                             }
-                            loggerArea.appendText("Publish in groups video: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
-                            logData.setPostID(-1);
+                            continue;
+                        }
+                    /*TODO Переделать*/
+                        if (pageGroup.getSelectionModel().getSelectedIndex() == 0) {
+                            Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
+                            logData.setPostID(postID);
+                            loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
                             getLogsService().insertLogs(logData);
                         }
-                        continue;
+                        if (pageGroup.getSelectionModel().getSelectedIndex() == 1 && gd.getType().equals("page")) {
+                            Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
+                            logData.setPostID(postID);
+                            loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
+                            getLogsService().insertLogs(logData);
+                        }
+                        if (pageGroup.getSelectionModel().getSelectedIndex() == 2 && gd.getType().equals("group")) {
+                            Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
+                            logData.setPostID(postID);
+                            loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
+                            getLogsService().insertLogs(logData);
+                        }
+                    }catch (Exception e) {
+                        loggerArea.appendText("NOT Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
                     }
-                    /*TODO Переделать*/
-                    if (pageGroup.getSelectionModel().getSelectedIndex() == 0) {
-                        Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
-                        logData.setPostID(postID);
-                        loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
-                        getLogsService().insertLogs(logData);
-                    }
-                    if (pageGroup.getSelectionModel().getSelectedIndex() == 1 && gd.getType().equals("page")) {
-                        Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
-                        logData.setPostID(postID);
-                        loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
-                        getLogsService().insertLogs(logData);
-                    }
-                    if (pageGroup.getSelectionModel().getSelectedIndex() == 2 && gd.getType().equals("group")) {
-                        Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
-                        logData.setPostID(postID);
-                        loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
-                        getLogsService().insertLogs(logData);
-                    }
-
                 }
+
                 System.out.println("done");
             }
         });

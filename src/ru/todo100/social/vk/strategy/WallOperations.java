@@ -88,7 +88,7 @@ public class WallOperations extends Operations {
         return null;
     }
 
-    public Integer post(Integer owner_id, Integer friends_only, Integer from_group, String message, String attachments) {
+    public Integer post(Integer owner_id, Integer friends_only, Integer from_group, String message, String attachments) throws Exception {
         try {
             StringBuilder urlString = getStringBuilder("wall.post");
             if (owner_id != null) {
@@ -111,7 +111,12 @@ public class WallOperations extends Operations {
             String responseBody = getResponse(urlString.toString());
             JSONObject object = new JSONObject(responseBody);
             System.out.println(object.toString());
-            return object.getJSONObject("response").getInt("post_id");
+            Integer post_id = object.getJSONObject("response").getInt("post_id");
+            if (post_id == 0) {
+                throw new Exception("");
+            }
+            return post_id;
+
         } catch (IOException | JSONException e) {
             e.printStackTrace();
             return null;

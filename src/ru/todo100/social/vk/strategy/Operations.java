@@ -136,7 +136,7 @@ public class Operations {
             JSONObject error = response.getJSONObject("error");
             int error_code = error.getInt("error_code");
             if (error_code == 15) {
-                return "{response: \"0\"}";
+                return "{response: {post_id:0}}";
             }
 
             if (error_code == 6) {
