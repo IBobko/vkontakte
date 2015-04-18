@@ -127,6 +127,7 @@ public class AntiCaptcha {
 
             }
             if (builder.toString().equals(Response.ERROR_WRONG_USER_KEY.toString())) {
+                System.out.println("Anti Captcha key:" + getKey());
                 Thread.sleep(1000);
                 return sendFileAndGetId(file);
 

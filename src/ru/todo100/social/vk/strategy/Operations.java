@@ -209,6 +209,16 @@ public class Operations {
                 array.put(captcha_key_json);
                 return repeatRequest(array);
             }
+
+            if (error_code == 220) {
+                try {
+                    Thread.sleep(3000);
+                    JSONArray array = error.getJSONArray("request_params");
+                    return repeatRequest(array);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
