@@ -21,39 +21,44 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.html.HTMLInputElement;
 import ru.todo100.social.Install;
 import ru.todo100.social.SpringFXMLLoader;
 import ru.todo100.social.vk.Engine;
+import ru.todo100.social.vk.datas.PostData;
 import ru.todo100.social.vk.datas.UserData;
-import ru.todo100.social.vk.strategy.UserOperations;
-import ru.todo100.social.vk.strategy.VkontakteApi;
+import ru.todo100.social.vk.strategy.*;
 import ru.todo100.social.vk.strategy.impl.VkontakteFactoryApi;
-import sun.plugin.javascript.JSObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @SuppressWarnings({"FieldCanBeLocal", "UnusedParameters", "SpellCheckingInspection"})
 public class LandingController extends AbstractController implements Initializable {
     final String yourNameText = "Вы вошли как: #YOUR_VK_NAME";
     private final String clientId = "4742608";
-    private final String login = "79686398038";
-    private final String password = "kjfry4hu575gt5hy";
+//    private final String login = "79686398038";
+//    private final String password = "kjfry4hu575gt5hy";
+
+    private final String login = "79686387967";
+    private final String password = "hjtiuertruh4rriy";
+
     public GridPane gridPane;
     public Menu groupsMenu;
     public ImageView userAvatar;
     private VkontakteFactoryApi vkontakteFactoryApi;
-
-    private VkontakteApi vkontakteApi;
-
     @FXML
     private Label yourNameLabel;
 
@@ -104,10 +109,6 @@ public class LandingController extends AbstractController implements Initializab
             System.out.println("Hello");
         });
 
-
-
-
-
         webView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
             @Override
             public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue) {
@@ -124,6 +125,7 @@ public class LandingController extends AbstractController implements Initializab
                         groupsMenu.setDisable(false);
                         yourNameLabel.setText(yourNameText.replace("#YOUR_VK_NAME", userData.getFirstName() + " " + userData.getLastName()));
 
+
                         userAvatar.setVisible(true);
                         try {
                             URL url = new URL(userData.getPhoto200_Orig());
@@ -136,6 +138,9 @@ public class LandingController extends AbstractController implements Initializab
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
+
+                        //likes();
                     }
 
                     NodeList nodes = webView.getEngine().getDocument().getElementsByTagName("input");
@@ -157,6 +162,144 @@ public class LandingController extends AbstractController implements Initializab
                 }
             }
         });
+    }
+
+    public void likes() {
+
+        File file = new File("/home/igor/log.txt");
+        File file2 = new File("/home/igor/Юля.txt");
+
+        try {
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            if (!file2.exists()) {
+                file2.createNewFile();
+            }
+
+            //PrintWriter обеспечит возможности записи в файл
+            PrintWriter out = new PrintWriter(file.getAbsoluteFile());
+            PrintWriter out2 = new PrintWriter(file2.getAbsoluteFile());
+
+
+            //LikesOperations likes = new LikesOperations(Engine.accessToken);
+            //likes.getList("post",99991,4749);
+
+            FriendsOperations friendsOperations = new FriendsOperations(Engine.accessToken);
+            List<Integer> friends = friendsOperations.get(172038204);
+            WallOperations wall = new WallOperations(Engine.accessToken);
+
+            //кузнаString join = String.join(",", friends.);
+
+
+
+            for (Integer id : friends) {
+
+
+                //List<Integer> users10 = friends.get(id);
+
+//                            for (Integer id2: users10) {
+//                                List<PostData> w = wall.get(id2, null, 0, 50, null, null);
+//                                UserOperations user1 = new UserOperations(Engine.accessToken);
+//                                List<UserData> u = user1.get(""+id2);
+//                                UserData uu2 = u.get(0);
+//                                out2.println("Friends of friends" + uu2.getFirstName() + " " + uu2.getLastName());
+//                                out2.flush();
+//                                for (PostData po: w) {
+//                                    LikesOperations likesOperations = new LikesOperations(Engine.accessToken);
+//                                    String likes = likesOperations.getList("post", id, po.getId().intValue());
+//                                    out2.println("--- #" + " --- " + po.getText() + " likes ");
+//                                    out2.flush();
+//
+//                                    if (likes == null) continue;
+//
+//                                    JSONObject response = null;
+//                                    try {
+//                                        response = new JSONObject(likes);
+//                                        JSONObject o = response.getJSONObject("response");
+//
+//                                        JSONArray r = o.getJSONArray("items");
+//                                        for (int i = 0; i < r.length(); i++) {
+//                                            out2.println("---------- likes: " + r.get(i));
+//                                            if (r.get(i).equals("172038204") || r.get(i).equals(172038204)) {
+//                                                out2.println(uu2.getId() + " " + uu2.getFirstName() + " " + uu2.getLastName() + " " + po.getText());
+//                                                out2.flush();
+//                                            }
+//                                            System.out.println(r.getInt(i));
+//                                        }
+//                                        out.flush();
+//
+//
+//                                    } catch (JSONException e) {
+//                                        e.printStackTrace();
+//                                    }
+//
+//
+//                                }
+//
+//                            }
+
+
+                List<PostData> w = wall.get(id, null, 0, 10, null, null);
+                UserOperations user1 = new UserOperations(Engine.accessToken);
+                List<UserData> u = user1.get("" + id);
+                UserData uu = u.get(0);
+                out.println("##" + uu.getFullName());
+                out.flush();
+                int i2 = 1;
+                for (PostData post : w) {
+                    Date date = new Date();
+                    date.setTime(post.getDate());
+                    Date now = new Date();
+                    now.setDate(01);
+
+                    if (date.after(now)) {
+                        out.println("### Пропускаем, слишком рано");
+                        continue;
+                    }
+
+
+                    LikesOperations likesOperations = new LikesOperations(Engine.accessToken);
+                    String likes = likesOperations.getList("post", id, post.getId().intValue());
+                    out.println("--- #" + i2 + " --- " + post.getText() + " likes ");
+                    out.flush();
+
+                    System.out.println("LIKES!!! GO GO GO!!!" + likes);
+
+                    if (likes == null) continue;
+                    try {
+                        JSONObject response = new JSONObject(likes);
+                        JSONObject o = response.getJSONObject("response");
+                        JSONArray r = o.getJSONArray("items");
+                        for (int i = 0; i < r.length(); i++) {
+                            out.println("---------- likes: " + r.get(i));
+                            if (r.get(i).equals("172038204") || r.get(i).equals(172038204)) {
+                                out2.println(uu.getId() + " " + uu.getFirstName() + " " + uu.getLastName() + " " + post.getText());
+                                out2.flush();
+                            }
+                            System.out.println(r.getInt(i));
+                        }
+                        out.flush();
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println(likes);
+                    i2++;
+                }
+                System.out.println(id);
+            }
+
+//                            out.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     public void showUserGroups(ActionEvent actionEvent) {
@@ -243,5 +386,9 @@ public class LandingController extends AbstractController implements Initializab
 
     public void setVkontakteFactoryApi(VkontakteFactoryApi vkontakteFactoryApi) {
         this.vkontakteFactoryApi = vkontakteFactoryApi;
+    }
+
+    public void showFriendsByUserId(ActionEvent actionEvent) {
+
     }
 }

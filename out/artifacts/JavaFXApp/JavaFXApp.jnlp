@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JavaFXApp.jar" size="87970" download="eager" />
+    <jar href="JavaFXApp.jar" size="105688" download="eager" />
     <jar href="lib/commons-codec-1.10.jar" size="284184" download="eager" />
     <jar href="lib/commons-logging-1.2.jar" size="61829" download="eager" />
     <jar href="lib/derby10.11.jar" size="3103132" download="eager" />

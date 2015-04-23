@@ -57,6 +57,7 @@ public class WallOperations extends Operations {
                 PostData post = new PostData();
                 post.setId(items.getJSONObject(i).getLong("id"));
                 post.setText(items.getJSONObject(i).getString("text"));
+                post.setDate(items.getJSONObject(i).getLong("date"));
                 posts.add(post);
             }
             return posts;
@@ -122,4 +123,6 @@ public class WallOperations extends Operations {
             return null;
         }
     }
+
+//    public String getComments(Integer owner_id, Integer post_id)
 }

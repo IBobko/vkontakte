@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import ru.todo100.social.Settings;
+import ru.todo100.social.vk.impl.SettingsImpl;
 
 import java.net.URL;
 import java.util.ResourceBundle;

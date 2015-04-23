@@ -6,6 +6,8 @@ package ru.todo100.social.vk.datas;
 public class PostData {
     private Long id;
     private String text;
+    private Long date;
+
 
     public Long getId() {
         return id;
@@ -21,6 +23,14 @@ public class PostData {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Long getDate() {
+        return date;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
     }
 
 //    id: 4593,

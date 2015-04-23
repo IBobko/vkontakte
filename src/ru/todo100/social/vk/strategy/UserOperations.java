@@ -26,7 +26,7 @@ public class UserOperations extends Operations {
         try {
             StringBuilder urlString = getStringBuilder("users.get");
             if (!StringUtils.isEmpty(user_ids)) {
-                urlString.append("user_ids=").append(user_ids);
+                urlString.append("&user_ids=").append(user_ids);
             }
 
             urlString.append("&fields=").append("photo_200_orig");

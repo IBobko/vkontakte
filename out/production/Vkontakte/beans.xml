@@ -15,7 +15,7 @@
         <property name="database" ref="database"/>
     </bean>
 
-    <bean id="settings" class="ru.todo100.social.Settings">
+    <bean id="settings" class="ru.todo100.social.vk.impl.SettingsImpl">
         <property name="database" ref="database"/>
     </bean>
 
@@ -43,6 +43,9 @@
         <property name="settings" ref="settings"/>
     </bean>
 
+    <bean id="confirmCaptchaKeyController" class="ru.todo100.social.vk.controllers.ConfirmAntiCaptchaKeyController">
+        <property name="settings" ref="settings"/>
+    </bean>
 
 
 </beans>

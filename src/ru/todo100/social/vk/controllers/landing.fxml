@@ -42,6 +42,11 @@
                         <MenuItem mnemonicParsing="false" onAction="#closeWindowAction" text="Закрыть" />
                     </items>
                 </Menu>
+                <Menu mnemonicParsing="false" text="Друзья">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showFriendsByUserId" text="Найти друзей некоего пользователя" />
+                    </items>
+                </Menu>
                 <Menu fx:id="groupsMenu" mnemonicParsing="false" text="Группы">
                     <items>
                         <MenuItem fx:id="showUserGroups" mnemonicParsing="false" onAction="#showUserGroups" text="Посмотреть группы пользователя" />

@@ -1,5 +1,10 @@
 package ru.todo100.social;
 
+import javafx.application.Platform;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -8,11 +13,10 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.util.StringUtils;
+import ru.todo100.social.vk.controllers.Controller;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -94,45 +98,85 @@ public class AntiCaptcha {
     }
 
     public String sendFileAndGetId(File file) {
-
-        HttpPost httppost = new HttpPost("http://antigate.com/in.php");
-
-        FileBody bin = new FileBody(file);
-        StringBody key = new StringBody(getKey(), ContentType.TEXT_PLAIN);
-
-        MultipartEntityBuilder reqEntity = MultipartEntityBuilder.create();
-        reqEntity.addPart("file", bin);
+        final HttpPost httppost = new HttpPost("http://antigate.com/in.php");
+        final FileBody sentFile = new FileBody(file);
+        final StringBody key = new StringBody(getKey(), ContentType.TEXT_PLAIN);
+        final MultipartEntityBuilder reqEntity = MultipartEntityBuilder.create();
+        reqEntity.addPart("file", sentFile);
         reqEntity.addPart("key", key);
         httppost.setEntity(reqEntity.build());
         try {
+            final DefaultHttpClient httpClient = new DefaultHttpClient();
+            final HttpResponse response = httpClient.execute(httppost);
 
-            DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpResponse response = httpClient.execute(httppost);
 
-            HttpEntity resEntity = response.getEntity();
+            final HttpEntity resEntity = response.getEntity();
+
+
 
 
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     resEntity.getContent()));
             String inputLine;
+
+
             StringBuilder builder = new StringBuilder();
             while ((inputLine = in.readLine()) != null) {
                 builder.append(inputLine);
             }
+
+
             System.out.println(builder.toString());
 
-            if (builder.toString().equals(Response.ERROR_NO_SLOT_AVAILABLE.toString())) {
+            if (builder.toString().equalsIgnoreCase(Response.ERROR_NO_SLOT_AVAILABLE.toString())) {
                 Thread.sleep(1000);
                 return sendFileAndGetId(file);
-
             }
-            if (builder.toString().equals(Response.ERROR_WRONG_USER_KEY.toString())) {
+            if (builder.toString().equalsIgnoreCase(Response.ERROR_WRONG_USER_KEY.toString())) {
+
+//                new Thread(() -> {
+//                    Platform.runLater(()->
+//                    {
+//                        Controller controller = SpringFXMLLoader.load("ru/todo100/social/vk/controllers/confirmAntiCaptchaKey.fxml");
+//                        Scene scene = new Scene((Parent) controller.getView(), 700, 500);
+//                        Stage stage = new Stage();
+//                        stage.setTitle("Подтвердите акнтикапчу");
+//                        stage.setScene(scene);
+//                        stage.initModality(Modality.WINDOW_MODAL);
+//                        stage.show();
+
+//                    });
+//                }).start();
+
+
+
+                System.out.println("AFTER");
+
+                System.out.println(Response.ERROR_WRONG_USER_KEY.toString());
+
                 System.out.println("Anti Captcha key:" + getKey());
                 Thread.sleep(1000);
                 return sendFileAndGetId(file);
 
             }
+            if (StringUtils.isEmpty(builder.toString())) {
+//                Controller controller = SpringFXMLLoader.load("ru/todo100/social/vk/controllers/confirmAntiCaptchaKey.fxml");
+//                Scene scene = new Scene((Parent) controller.getView(), 700, 500);
+//                Stage stage = new Stage();
+//                stage.setTitle("Подтвердите акнтикапчу");
+//                stage.setScene(scene);
+//                stage.initModality(Modality.WINDOW_MODAL);
+//                stage.show();
+//
+//
+//
+//                System.out.println("Anti Captcha key:" + getKey());
+//                Thread.sleep(1000);
+                return sendFileAndGetId(file);
+//
+            }
 
+            System.out.println(builder.toString());
 
             return builder.toString().split("\\|")[1];
         } catch (IOException e) {

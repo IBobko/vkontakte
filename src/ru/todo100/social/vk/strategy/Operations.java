@@ -149,6 +149,14 @@ public class Operations {
                 }
             }
 
+            if (error_code == 18) {
+                return "{response: {items:[],post_id:0}}";
+            }
+
+            if (error_code == 10) {
+                return "{response: {items:[],post_id:0}}";
+            }
+
             if (error_code == 14) {
                 String captchaImg = error.getString("captcha_img");
                 String captcha_sid = error.getString("captcha_sid");

@@ -28,6 +28,7 @@ import ru.todo100.social.vk.strategy.GroupsOperations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author Igor Bobko
@@ -273,7 +274,7 @@ public class SearchGroupController {
                     closedGroups++;
                     continue;
                 }
-                if (onlyPostCheckbox.isSelected() && group.getCanPost() == 0) {
+                if (onlyPostCheckbox.isSelected() && group!=null && group.getCanPost() == 0) {
                     continue;
                 }
                 groupsList.getItems().add(group);
