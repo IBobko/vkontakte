@@ -47,6 +47,11 @@
         <property name="settings" ref="settings"/>
     </bean>
 
+    <bean id="userFriendsController" class="ru.todo100.social.vk.controllers.UserFriendsController">
+        <!--property name="logsService" ref="logsService"/-->
+    </bean>
+
+
 
 </beans>
 

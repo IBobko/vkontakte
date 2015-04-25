@@ -156,7 +156,7 @@ public class LandingController extends AbstractController implements Initializab
                         if (element.getNodeValue().equals("submit")) {
                             HTMLInputElement submitElement = (HTMLInputElement) nodes.item(i);
                             //submitElement.
-                            //submitElement.click();
+                            //ЫрщцsubmitElement.click();
                         }
                     }
                 }
@@ -389,6 +389,11 @@ public class LandingController extends AbstractController implements Initializab
     }
 
     public void showFriendsByUserId(ActionEvent actionEvent) {
-
+        Controller controller = SpringFXMLLoader.load("ru/todo100/social/vk/controllers/userFriends.fxml");
+        Scene scene = new Scene((Parent) controller.getView(), 900, 500);
+        Stage stage = new Stage();
+        stage.setTitle("Друзья");
+        stage.setScene(scene);
+        stage.show();
     }
 }

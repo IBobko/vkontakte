@@ -78,7 +78,10 @@ public class UserGroupsController extends AbstractController implements Initiali
 
         Pattern p = Pattern.compile("video(\\d+)_(\\d+)");
 
+
+
         Platform.runLater(() -> {
+            Integer counter = 0;
             for (GroupData gd : userGroups) {
                 try {
                     LogData logData = new LogData();
@@ -120,23 +123,29 @@ public class UserGroupsController extends AbstractController implements Initiali
                         logData.setPostID(postID);
                         loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
                         getLogsService().insertLogs(logData);
+                        counter++;
                     }
                     if (pageGroup.getSelectionModel().getSelectedIndex() == 1 && gd.getType().equals("page")) {
                         Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
                         logData.setPostID(postID);
                         loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
                         getLogsService().insertLogs(logData);
+                        counter++;
                     }
                     if (pageGroup.getSelectionModel().getSelectedIndex() == 2 && gd.getType().equals("group")) {
                         Integer postID = wall.post(gd.getId() * -1, 0, 0, message, attachment);
                         logData.setPostID(postID);
                         loggerArea.appendText("Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
                         getLogsService().insertLogs(logData);
+                        counter++;
                     }
                 }catch (Exception e) {
                     loggerArea.appendText("NOT Publish in: " + gd.getName() + " (" + gd.getId() + ")" + " \n");
                 }
-
+                if (counter > 100) {
+                    loggerArea.appendText("MAX 100");
+                    break;
+                }
 
             }
             System.out.println("done");

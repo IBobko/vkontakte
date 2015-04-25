@@ -2,10 +2,20 @@
 
 <!--suppress JavaFxUnresolvedFxIdReference -->
 
+<?import java.lang.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8"
-      fx:controller="ru.todo100.social.vk.controllers.UserFriendsController">
 
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.todo100.social.vk.controllers.UserFriendsController">
+   <children>
+         <TextField fx:id="userId" />
+         <TableView>        <columns>
+               <TableColumn prefWidth="75.0" text="C1" />
+               <TableColumn prefWidth="75.0" text="C2" />
+         </columns>
+            
+      </TableView>
+
+   </children>
 </VBox>
